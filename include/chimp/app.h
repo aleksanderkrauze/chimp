@@ -5,6 +5,10 @@
 
 namespace chimp {
 
+/**
+ * Main class used to parse command line arguments.
+ * Prefered way to construct it is by using AppBuilder.
+ */
 class App {
 public:
   App();

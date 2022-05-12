@@ -5,6 +5,9 @@
 
 namespace chimp {
 
+/**
+ * Builder class for App.
+ */
 class AppBuilder {
 public:
   AppBuilder() noexcept;
