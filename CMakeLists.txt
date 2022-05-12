@@ -15,7 +15,7 @@ else()
   set(IS_TOPLEVEL_PROJECT FALSE)
 endif()
 
-option(CHIMP_BUILD_TESTS "Build chimp tests" ${IS_TOPLEVEL_PROJECT})
+option(CHIMP_BUILD_TESTING "Build chimp tests" ${IS_TOPLEVEL_PROJECT})
 
 add_library(chimp INTERFACE)
 
@@ -26,7 +26,7 @@ target_include_directories(chimp INTERFACE
 
 target_compile_features(chimp INTERFACE cxx_std_17)
 
-if(CHIMP_BUILD_TESTS AND BUILD_TESTING)
+if(CHIMP_BUILD_TESTING AND BUILD_TESTING)
   include(CTest)
   add_subdirectory(tests)
 endif()
