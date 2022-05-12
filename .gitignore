@@ -1,0 +1,8 @@
+# cmake build directory
+build/
+
+# clangd
+.cache/
+
+# helper scripts
+*.sh
