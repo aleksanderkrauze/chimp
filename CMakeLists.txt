@@ -16,6 +16,7 @@ else()
 endif()
 
 option(CHIMP_BUILD_TESTS "Build chimp tests" ${IS_TOPLEVEL_PROJECT})
+option(CHIMP_BUILD_DOC "Build chimp's documentation" ${IS_TOPLEVEL_PROJECT})
 
 add_library(chimp INTERFACE)
 
@@ -29,6 +30,10 @@ target_compile_features(chimp INTERFACE cxx_std_17)
 if(CHIMP_BUILD_TESTS AND BUILD_TESTING)
   include(CTest)
   add_subdirectory(tests)
+endif()
+
+if(CHIMP_BUILD_DOC)
+  add_subdirectory(doc)
 endif()
 
 install(TARGETS chimp
