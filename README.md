@@ -19,7 +19,7 @@ but rather they are wrapped in `std::shared_ptr`. Errors are reported rather ear
 
 On the other hand parsing is often only half of a job and parsed data must be validated.
 This library exposes API allowing users to specify their constraints that will be
-checked during parsing phase. 
+checked during parsing phase.
 
 ## Beautiful
 Another deadly sin pointed out by Joe Armstrong is
