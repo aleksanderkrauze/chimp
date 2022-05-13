@@ -10,3 +10,4 @@
 ## v0.2
 
 - add support for wide strings
+- make things `constexpr`
