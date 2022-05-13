@@ -1,6 +1,9 @@
 #ifndef CHIMP_APP_BUILDER_H
 #define CHIMP_APP_BUILDER_H
 
+#include <optional>
+#include <string>
+
 #include "chimp/common.h"
 
 namespace chimp {
@@ -10,18 +13,44 @@ namespace chimp {
  */
 class AppBuilder {
 public:
-  AppBuilder() noexcept;
+  /** Constructs %AppBuilder. */
+  AppBuilder(const std::string) noexcept;
 
   AppBuilder(const AppBuilder&) = delete;
   AppBuilder(AppBuilder&&) = default;
   AppBuilder& operator=(const AppBuilder&) = delete;
-  AppBuilder& operator=(AppBuilder&&) = default;
+  AppBuilder& operator=(AppBuilder&&) = delete;
   ~AppBuilder() = default;
 
+  /** Sets application's author(s). */
+  AppBuilder& author(const std::string) noexcept;
+  /** Sets application's version. */
+  AppBuilder& version(const std::string) noexcept;
+  /** Sets application's about (a short text description displayed at the
+   * begining of a help screen).
+   */
+  AppBuilder& about(const std::string) noexcept;
+
+  /**
+   * Creates and returns new App.
+   *
+   * \warning This will move `*this` into %App constructor.
+   * Any later usage of %AppBuilder object is an undefined behaviour.
+   */
   App build();
 
 private:
-  // members
+  /** @copydoc App::m_name */
+  const std::string m_name;
+
+  /** @copydoc App::m_author */
+  std::optional<std::string> m_author;
+  /** @copydoc App::m_version */
+  std::optional<std::string> m_version;
+  /** @copydoc App::m_about */
+  std::optional<std::string> m_about;
+
+  friend App;
 
 #ifdef CHIMP_BUILD_TESTING
   friend testing::AppBuilderTest;

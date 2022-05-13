@@ -1,6 +1,9 @@
 #ifndef CHIMP_APP_H
 #define CHIMP_APP_H
 
+#include <optional>
+#include <string>
+
 #include "chimp/common.h"
 
 namespace chimp {
@@ -11,21 +14,34 @@ namespace chimp {
  */
 class App {
 public:
-  App();
+  /**
+   * Constructs %App from moved AppBuilder.
+   */
   App(AppBuilder&&);
 
   App(const App&) = delete;
   App(App&&) = default;
   App& operator=(const App&) = delete;
-  App& operator=(App&&) = default;
+  App& operator=(App&&) = delete;
   ~App() = default;
 
-  static AppBuilder builder() noexcept;
+  /** Creates and returns new %AppBuilder. */
+  static AppBuilder builder(const std::string) noexcept;
 
   void parse(int, char**);
 
 private:
-  // members
+  /** Project's name. */
+  const std::string m_name;
+
+  /** Author(s) of a project. Will be displayed on help screen. */
+  const std::optional<std::string> m_author;
+  /** Project's version number. Will be displayed on help screen. */
+  const std::optional<std::string> m_version;
+  /** Project's short description.
+   * Will be displayed at the begining of help screen.
+   */
+  const std::optional<std::string> m_about;
 
 #ifdef CHIMP_BUILD_TESTING
   friend testing::AppTest;

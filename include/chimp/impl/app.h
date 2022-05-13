@@ -8,12 +8,17 @@
 
 namespace chimp {
 
-App::App() {}
-
+/** @param builder AppBuilder that is used to create %App */
 App::App(AppBuilder&& builder)
-    : App{} {}
+    : m_name{builder.m_name}
+    , m_author{builder.m_author}
+    , m_version{builder.m_version}
+    , m_about{builder.m_about} {}
 
-AppBuilder App::builder() noexcept { return AppBuilder{}; }
+/** @param name Application's name */
+AppBuilder App::builder(const std::string name) noexcept {
+  return AppBuilder{name};
+}
 
 void App::parse(int argc, char** argv) {
   // parse CLI arguments
