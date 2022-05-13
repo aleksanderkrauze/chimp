@@ -4,3 +4,4 @@ project(chimp_tests)
 
 add_subdirectory(basic_link_library_test)
 add_subdirectory(version_macros_test)
+add_subdirectory(cxx_flags_warnings)
