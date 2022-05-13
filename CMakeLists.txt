@@ -18,6 +18,11 @@ endif()
 option(CHIMP_BUILD_TESTING "Build chimp tests" ${IS_TOPLEVEL_PROJECT})
 option(CHIMP_BUILD_DOC "Build chimp's documentation" ${IS_TOPLEVEL_PROJECT})
 
+configure_file(
+  cmake/cmake_config.h.in
+  ${CMAKE_CURRENT_SOURCE_DIR}/include/chimp/cmake_config.h
+)
+
 add_library(chimp INTERFACE)
 
 target_include_directories(chimp INTERFACE

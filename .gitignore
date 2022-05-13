@@ -6,3 +6,6 @@ build/
 
 # helper scripts
 *.sh
+
+# cmake generated files
+include/chimp/cmake_config.h
