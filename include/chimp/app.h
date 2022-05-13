@@ -10,7 +10,15 @@ namespace chimp {
 
 /**
  * Main class used to parse command line arguments.
- * Preferred way to construct it is by using AppBuilder.
+ * Preferred way to construct it is by using AppBuilder (see below).
+ *
+ * ```
+ * auto app = App::builder("Awesome app")
+ *                .author("Great developer")
+ *                .version("1.0.0")
+ *                .about("This app allows to do awesome things")
+ *                .build();
+ * ```
  *
  * @see @ref AppBuilder
  */
