@@ -18,7 +18,7 @@ endif()
 option(CHIMP_BUILD_TESTING "Build chimp tests" ${IS_TOPLEVEL_PROJECT})
 option(CHIMP_BUILD_DOC "Build chimp's documentation" ${IS_TOPLEVEL_PROJECT})
 option(CHIMP_BUILD_INTERNAL_DOC
-  "Build internal documentation. Usefull for contributors"
+  "Build internal documentation. Useful for contributors"
   OFF
 )
 

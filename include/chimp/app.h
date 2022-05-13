@@ -10,7 +10,7 @@ namespace chimp {
 
 /**
  * Main class used to parse command line arguments.
- * Prefered way to construct it is by using AppBuilder.
+ * Preferred way to construct it is by using AppBuilder.
  */
 class App {
 public:
@@ -39,7 +39,7 @@ private:
   /** Project's version number. Will be displayed on help screen. */
   const std::optional<std::string> m_version;
   /** Project's short description.
-   * Will be displayed at the begining of help screen.
+   * Will be displayed at the beginning of help screen.
    */
   const std::optional<std::string> m_about;
 

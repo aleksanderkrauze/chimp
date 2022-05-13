@@ -27,7 +27,7 @@ public:
   /** Sets application's version. */
   AppBuilder& version(const std::string) noexcept;
   /** Sets application's about (a short text description displayed at the
-   * begining of a help screen).
+   * beginning of a help screen).
    */
   AppBuilder& about(const std::string) noexcept;
 

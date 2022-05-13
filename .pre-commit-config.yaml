@@ -4,7 +4,6 @@ repos:
   hooks:
   - id: trailing-whitespace
   - id: end-of-file-fixer
-  - id: check-yaml
   - id: check-added-large-files
 
 - repo: https://github.com/pocc/pre-commit-hooks
@@ -12,3 +11,10 @@ repos:
   hooks:
   - id: clang-format
     args: [-i]
+
+- repo: https://github.com/codespell-project/codespell
+  rev: v2.1.0
+  hooks:
+    - id: codespell
+      name: codespell
+      description: Checks for common misspellings in text files.
