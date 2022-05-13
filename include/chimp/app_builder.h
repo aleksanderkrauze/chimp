@@ -9,11 +9,11 @@
 namespace chimp {
 
 /**
- * Builder class for App.
+ * Builder class for @ref App.
  */
 class AppBuilder {
 public:
-  /** Constructs %AppBuilder. */
+  /** Constructs AppBuilder. */
   AppBuilder(const std::string) noexcept;
 
   AppBuilder(const AppBuilder&) = delete;
@@ -32,10 +32,10 @@ public:
   AppBuilder& about(const std::string) noexcept;
 
   /**
-   * Creates and returns new App.
+   * Creates and returns new @ref App.
    *
-   * \warning This will move `*this` into %App constructor.
-   * Any later usage of %AppBuilder object is an undefined behaviour.
+   * @warning This will move `*this` into App constructor.
+   * Any later usage of AppBuilder object is an undefined behaviour.
    */
   App build();
 

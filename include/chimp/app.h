@@ -11,12 +11,12 @@ namespace chimp {
 /**
  * Main class used to parse command line arguments.
  * Preferred way to construct it is by using AppBuilder.
+ *
+ * @see @ref AppBuilder
  */
 class App {
 public:
-  /**
-   * Constructs %App from moved AppBuilder.
-   */
+  /** Constructs App from moved @ref AppBuilder. */
   App(AppBuilder&&);
 
   App(const App&) = delete;
@@ -25,7 +25,7 @@ public:
   App& operator=(App&&) = delete;
   ~App() = default;
 
-  /** Creates and returns new %AppBuilder. */
+  /** Creates and returns new AppBuilder. */
   static AppBuilder builder(const std::string) noexcept;
 
   void parse(int, char**);

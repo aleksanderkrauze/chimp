@@ -8,7 +8,7 @@
 
 namespace chimp {
 
-/** @param builder AppBuilder that is used to create %App */
+/** @param builder AppBuilder that is used to create App */
 App::App(AppBuilder&& builder)
     : m_name{builder.m_name}
     , m_author{builder.m_author}
