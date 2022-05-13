@@ -8,14 +8,14 @@ namespace chimp {
 class App;
 class AppBuilder;
 
+#ifdef CHIMP_BUILD_TESTING
 namespace testing {
 
-#ifdef CHIMP_BUILD_TESTING
   class AppTest;
   class AppBuilderTest;
-#endif // CHIMP_BUILD_TESTING
 
 } // namespace testing
+#endif // CHIMP_BUILD_TESTING
 
 } // namespace chimp
 
