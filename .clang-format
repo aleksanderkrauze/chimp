@@ -1,11 +1,13 @@
----
 BasedOnStyle: LLVM
-
-IndentWidth: 2
+BreakConstructorInitializers: BeforeComma
+BreakInheritanceList: BeforeComma
 ContinuationIndentWidth: 2
+IndentWidth: 2
 NamespaceIndentation: Inner
-
-# AlignAfterOpenBracket: BlockIndent
-
-DerivePointerAlignment: false
 PointerAlignment: Left
+ReferenceAlignment: Left
+Standard: c++17
+
+# Wait for it to be published in clang-14
+# AlignAfterOpenBracket: BlockIndent
+# PackConstructorInitializers: Never

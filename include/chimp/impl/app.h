@@ -10,7 +10,8 @@ namespace chimp {
 
 App::App() {}
 
-App::App(AppBuilder&& builder) : App{} {}
+App::App(AppBuilder&& builder)
+    : App{} {}
 
 AppBuilder App::builder() noexcept { return AppBuilder{}; }
 
