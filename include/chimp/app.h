@@ -25,6 +25,11 @@ public:
   void parse(int, char**);
 
 private:
+  // members
+
+#ifdef CHIMP_BUILD_TESTING
+  friend testing::AppTest;
+#endif // CHIMP_BUILD_TESTING
 };
 
 } // namespace chimp

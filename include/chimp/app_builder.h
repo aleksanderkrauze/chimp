@@ -21,6 +21,11 @@ public:
   App build();
 
 private:
+  // members
+
+#ifdef CHIMP_BUILD_TESTING
+  friend testing::AppBuilderTest;
+#endif // CHIMP_BUILD_TESTING
 };
 
 } // namespace chimp

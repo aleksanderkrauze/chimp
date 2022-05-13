@@ -31,6 +31,9 @@ target_include_directories(chimp INTERFACE
 )
 
 target_compile_features(chimp INTERFACE cxx_std_17)
+if(CHIMP_BUILD_TESTING)
+  target_compile_definitions(chimp INTERFACE CHIMP_BUILD_TESTING)
+endif()
 
 if(CHIMP_BUILD_TESTING AND BUILD_TESTING)
   include(CTest)
