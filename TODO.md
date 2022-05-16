@@ -9,5 +9,5 @@
 
 ## v0.2
 
-- add support for wide strings
+- add support for wide strings (or just Unicode codepoints)
 - make things `constexpr`
