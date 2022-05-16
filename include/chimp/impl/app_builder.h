@@ -35,7 +35,9 @@ AppBuilder& AppBuilder::about(const std::string about) noexcept {
   return *this;
 }
 
-App AppBuilder::build() { return App{std::move(*this)}; }
+App AppBuilder::build() {
+  return App{std::move(*this)};
+}
 
 } // namespace chimp
 

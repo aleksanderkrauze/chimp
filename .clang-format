@@ -1,3 +1,4 @@
+AllowShortFunctionsOnASingleLine: Inline
 BasedOnStyle: LLVM
 BreakConstructorInitializers: BeforeComma
 BreakInheritanceList: BeforeComma
