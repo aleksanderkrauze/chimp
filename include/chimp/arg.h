@@ -10,11 +10,11 @@ namespace chimp {
 
 class Arg {
 public:
-  Arg(ArgBuilder&&);
+  explicit Arg(ArgBuilder&&);
 
   Arg(const Arg&) = delete;
   Arg& operator=(const Arg&) = delete;
-  Arg(Arg&&) = default;
+  explicit Arg(Arg&&) = default;
   Arg& operator=(Arg&&) = delete;
   ~Arg() = default;
 

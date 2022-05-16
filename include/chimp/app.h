@@ -25,10 +25,10 @@ namespace chimp {
 class App {
 public:
   /** Constructs App from moved @ref AppBuilder. */
-  App(AppBuilder&&);
+  explicit App(AppBuilder&&);
 
   App(const App&) = delete;
-  App(App&&) = default;
+  explicit App(App&&) = default;
   App& operator=(const App&) = delete;
   App& operator=(App&&) = delete;
   ~App() = default;

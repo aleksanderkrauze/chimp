@@ -14,7 +14,7 @@ public:
 
   ArgBuilder(const ArgBuilder&) = delete;
   ArgBuilder& operator=(const ArgBuilder&) = delete;
-  ArgBuilder(ArgBuilder&&) = default;
+  explicit ArgBuilder(ArgBuilder&&) = default;
   ArgBuilder& operator=(ArgBuilder&&) = default;
   ~ArgBuilder() = default;
 

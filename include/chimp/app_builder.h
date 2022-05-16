@@ -14,10 +14,10 @@ namespace chimp {
 class AppBuilder {
 public:
   /** Constructs AppBuilder. */
-  AppBuilder(const std::string) noexcept;
+  explicit AppBuilder(const std::string) noexcept;
 
   AppBuilder(const AppBuilder&) = delete;
-  AppBuilder(AppBuilder&&) = default;
+  explicit AppBuilder(AppBuilder&&) = default;
   AppBuilder& operator=(const AppBuilder&) = delete;
   AppBuilder& operator=(AppBuilder&&) = delete;
   ~AppBuilder() = default;
