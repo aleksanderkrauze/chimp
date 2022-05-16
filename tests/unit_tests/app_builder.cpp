@@ -5,42 +5,40 @@
 const auto tester = chimp::testing::AppBuilderTest();
 
 TEST(AppBuilder, initial_member_variables_values) {
-  const auto app_builder = chimp::AppBuilder("test");
+  const auto builder = chimp::AppBuilder("test");
 
-  ASSERT_STREQ(tester.m_name(app_builder).c_str(), "test");
+  ASSERT_STREQ(tester.m_name(builder).c_str(), "test");
 
   // std::optionals are empty
-  ASSERT_FALSE(tester.m_author(app_builder));
-  ASSERT_FALSE(tester.m_version(app_builder));
-  ASSERT_FALSE(tester.m_about(app_builder));
+  ASSERT_FALSE(tester.m_author(builder));
+  ASSERT_FALSE(tester.m_version(builder));
+  ASSERT_FALSE(tester.m_about(builder));
 }
 
 TEST(AppBuilder, author) {
-  auto app_builder = chimp::AppBuilder("test");
-  ASSERT_FALSE(tester.m_author(app_builder));
+  auto builder = chimp::AppBuilder("test");
+  ASSERT_FALSE(tester.m_author(builder));
 
-  app_builder.author("Some author");
-  const auto m_author = tester.m_author(app_builder);
+  builder.author("Some author");
 
-  ASSERT_STREQ(m_author.value().c_str(), "Some author");
+  ASSERT_STREQ(tester.m_author(builder).value().c_str(), "Some author");
 }
 
 TEST(AppBuilder, version) {
-  auto app_builder = chimp::AppBuilder("test");
-  ASSERT_FALSE(tester.m_version(app_builder));
+  auto builder = chimp::AppBuilder("test");
+  ASSERT_FALSE(tester.m_version(builder));
 
-  app_builder.version("1.2.3");
-  const auto m_version = tester.m_version(app_builder);
+  builder.version("1.2.3");
 
-  ASSERT_STREQ(m_version.value().c_str(), "1.2.3");
+  ASSERT_STREQ(tester.m_version(builder).value().c_str(), "1.2.3");
 }
 
 TEST(AppBuilder, about) {
-  auto app_builder = chimp::AppBuilder("test");
-  ASSERT_FALSE(tester.m_about(app_builder));
+  auto builder = chimp::AppBuilder("test");
+  ASSERT_FALSE(tester.m_about(builder));
 
-  app_builder.about("Short description of a program");
-  const auto m_about = tester.m_about(app_builder);
+  builder.about("Short description of a program");
 
-  ASSERT_STREQ(m_about.value().c_str(), "Short description of a program");
+  ASSERT_STREQ(tester.m_about(builder).value().c_str(),
+               "Short description of a program");
 }
