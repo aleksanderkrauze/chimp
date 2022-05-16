@@ -13,10 +13,11 @@ public:
   explicit Arg(ArgBuilder&&);
 
   Arg(const Arg&) = delete;
-  Arg& operator=(const Arg&) = delete;
   explicit Arg(Arg&&) = default;
-  Arg& operator=(Arg&&) = delete;
   ~Arg() = default;
+
+  Arg& operator=(const Arg&) = delete;
+  Arg& operator=(Arg&&) = delete;
 
   static ArgBuilder builder() noexcept;
 

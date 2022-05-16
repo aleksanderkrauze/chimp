@@ -29,9 +29,10 @@ public:
 
   App(const App&) = delete;
   explicit App(App&&) = default;
+  ~App() = default;
+
   App& operator=(const App&) = delete;
   App& operator=(App&&) = delete;
-  ~App() = default;
 
   /** Creates and returns new AppBuilder. */
   static AppBuilder builder(const std::string) noexcept;

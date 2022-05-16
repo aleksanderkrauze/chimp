@@ -18,9 +18,10 @@ public:
 
   AppBuilder(const AppBuilder&) = delete;
   explicit AppBuilder(AppBuilder&&) = default;
+  ~AppBuilder() = default;
+
   AppBuilder& operator=(const AppBuilder&) = delete;
   AppBuilder& operator=(AppBuilder&&) = delete;
-  ~AppBuilder() = default;
 
   /** Sets application's author(s). */
   AppBuilder& author(const std::string) noexcept;

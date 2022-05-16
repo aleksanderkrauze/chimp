@@ -13,10 +13,11 @@ public:
   ArgBuilder();
 
   ArgBuilder(const ArgBuilder&) = delete;
-  ArgBuilder& operator=(const ArgBuilder&) = delete;
   explicit ArgBuilder(ArgBuilder&&) = default;
-  ArgBuilder& operator=(ArgBuilder&&) = default;
   ~ArgBuilder() = default;
+
+  ArgBuilder& operator=(const ArgBuilder&) = delete;
+  ArgBuilder& operator=(ArgBuilder&&) = default;
 
   ArgBuilder& short_name(const char) noexcept;
   ArgBuilder& long_name(const std::string) noexcept;
