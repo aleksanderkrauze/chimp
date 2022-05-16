@@ -48,4 +48,14 @@ public:
   }
 };
 
+class chimp::testing::ArgTest {
+public:
+  ArgTest() = default;
+};
+
+class chimp::testing::ArgBuilderTest {
+public:
+  ArgBuilderTest() = default;
+};
+
 #endif // UNIT_TESTS_CHIMP_TESTING_CLASSES_H

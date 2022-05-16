@@ -9,12 +9,16 @@ namespace chimp {
 
 class App;
 class AppBuilder;
+class Arg;
+class ArgBuilder;
 
 #ifdef CHIMP_BUILD_TESTING
 namespace testing {
 
   class AppTest;
   class AppBuilderTest;
+  class ArgTest;
+  class ArgBuilderTest;
 
 } // namespace testing
 #endif // CHIMP_BUILD_TESTING
