@@ -51,11 +51,28 @@ public:
 class chimp::testing::ArgTest {
 public:
   ArgTest() = default;
+
+  const std::optional<char>& m_short(const Arg& arg) const noexcept {
+    return arg.m_short;
+  }
+
+  const std::optional<std::string>& m_long(const Arg& arg) const noexcept {
+    return arg.m_long;
+  }
 };
 
 class chimp::testing::ArgBuilderTest {
 public:
   ArgBuilderTest() = default;
+
+  const std::optional<char>& m_short(const ArgBuilder& builder) const noexcept {
+    return builder.m_short;
+  }
+
+  const std::optional<std::string>&
+  m_long(const ArgBuilder& builder) const noexcept {
+    return builder.m_long;
+  }
 };
 
 #endif // UNIT_TESTS_CHIMP_TESTING_CLASSES_H
