@@ -6,7 +6,7 @@
 
 ## v0.1
 
-- Do basic implementation of App, Arg, Command, PositionalArg and their builders.
+- Do basic implementation of App, Arg, Command and their builders.
 - write tests
 - write documentation
 - create `CHANGELOG.md`
@@ -16,3 +16,5 @@
 
 - add support for wide strings (or just Unicode codepoints)
 - make things `constexpr`
+- use templates that use their types to differentiate between their usage
+(is_positional for example)

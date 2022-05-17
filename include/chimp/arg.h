@@ -11,6 +11,12 @@ namespace chimp {
 /**
  * Representation of an argument passed through command line.
  *
+ * Arguments can be either named or positional. They are named when they have
+ * at least one of short and long format defined. And positional otherwise.
+ * Named arguments are matched on command line by using their short or long
+ * format. Positional on the other hand are matched according to their relative
+ * position to each other.
+ *
  * Preferred way to create it is by using ArgBuilder (see example below)
  *
  * ```
@@ -33,6 +39,9 @@ public:
 
   Arg& operator=(const Arg&) = delete;
   Arg& operator=(Arg&&) = delete;
+
+  /** Returns `true` when Arg is a positional argument. */
+  bool is_positional() const noexcept;
 
   /** Creates and returns new ArgBuilder */
   static ArgBuilder builder() noexcept;
