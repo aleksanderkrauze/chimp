@@ -12,6 +12,10 @@ class AppBuilder;
 class Arg;
 class ArgBuilder;
 
+class Error;
+class LogicError;
+class ParsingError;
+
 #ifdef CHIMP_BUILD_TESTING
 namespace testing {
 
