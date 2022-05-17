@@ -40,11 +40,11 @@ public:
   Arg& operator=(const Arg&) = delete;
   Arg& operator=(Arg&&) = delete;
 
-  /** Returns `true` when Arg is a positional argument. */
-  bool is_positional() const noexcept;
-
   /** Creates and returns new ArgBuilder */
   static ArgBuilder builder() noexcept;
+
+  /** Returns `true` when Arg is a positional argument. */
+  bool is_positional() const noexcept;
 
 private:
   /**

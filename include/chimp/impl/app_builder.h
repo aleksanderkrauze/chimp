@@ -17,6 +17,10 @@ AppBuilder::AppBuilder(const std::string name) noexcept
     , m_version{std::nullopt}
     , m_about{std::nullopt} {}
 
+App AppBuilder::build() {
+  return App{std::move(*this)};
+}
+
 /** @param author application's author */
 AppBuilder& AppBuilder::author(const std::string author) noexcept {
   this->m_author = author;
@@ -33,10 +37,6 @@ AppBuilder& AppBuilder::version(const std::string version) noexcept {
 AppBuilder& AppBuilder::about(const std::string about) noexcept {
   this->m_about = about;
   return *this;
-}
-
-App AppBuilder::build() {
-  return App{std::move(*this)};
 }
 
 } // namespace chimp

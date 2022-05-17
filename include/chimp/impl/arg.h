@@ -13,12 +13,12 @@ Arg::Arg(ArgBuilder&& builder)
     : m_short{builder.m_short}
     , m_long{builder.m_long} {}
 
-bool Arg::is_positional() const noexcept {
-  return !(this->m_short.has_value() || this->m_long.has_value());
-}
-
 ArgBuilder Arg::builder() noexcept {
   return ArgBuilder{};
+}
+
+bool Arg::is_positional() const noexcept {
+  return !(this->m_short.has_value() || this->m_long.has_value());
 }
 
 } // namespace chimp

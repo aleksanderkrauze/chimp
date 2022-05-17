@@ -23,6 +23,14 @@ public:
   AppBuilder& operator=(const AppBuilder&) = delete;
   AppBuilder& operator=(AppBuilder&&) = delete;
 
+  /**
+   * Creates and returns new @ref App.
+   *
+   * @warning This will move `*this` into App constructor.
+   * Any later usage of AppBuilder object is an undefined behaviour.
+   */
+  App build();
+
   /** Sets application's author(s). */
   AppBuilder& author(const std::string) noexcept;
   /** Sets application's version. */
@@ -31,14 +39,6 @@ public:
    * beginning of a help screen).
    */
   AppBuilder& about(const std::string) noexcept;
-
-  /**
-   * Creates and returns new @ref App.
-   *
-   * @warning This will move `*this` into App constructor.
-   * Any later usage of AppBuilder object is an undefined behaviour.
-   */
-  App build();
 
 private:
   /** @copydoc App::m_name */

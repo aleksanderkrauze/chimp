@@ -17,6 +17,10 @@ ArgBuilder::ArgBuilder()
     : m_short{std::nullopt}
     , m_long{std::nullopt} {}
 
+Arg ArgBuilder::build() {
+  return Arg{std::move(*this)};
+}
+
 /** @param arg Arg's short version */
 ArgBuilder& ArgBuilder::short_arg(const char arg) {
   if (!std::isalnum(arg)) {
@@ -53,10 +57,6 @@ ArgBuilder& ArgBuilder::long_arg(const std::string arg) {
 
   this->m_long = arg;
   return *this;
-}
-
-Arg ArgBuilder::build() {
-  return Arg{std::move(*this)};
 }
 
 } // namespace chimp

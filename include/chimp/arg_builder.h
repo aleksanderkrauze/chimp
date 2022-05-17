@@ -24,6 +24,14 @@ public:
   ArgBuilder& operator=(ArgBuilder&&) = default;
 
   /**
+   * Creates and returns new @ref Arg.
+   *
+   * @warning This will move `*this` into Arg constructor.
+   * Any later usage of ArgBuilder object is an undefined behaviour.
+   */
+  Arg build();
+
+  /**
    * Sets Arg's short version.
    *
    * @invariant Provided value must be an **alphanumeric** character.
@@ -41,14 +49,6 @@ public:
    * @invariant If it is violated this function will throw @ref LogicError.
    */
   ArgBuilder& long_arg(const std::string);
-
-  /**
-   * Creates and returns new @ref Arg.
-   *
-   * @warning This will move `*this` into Arg constructor.
-   * Any later usage of ArgBuilder object is an undefined behaviour.
-   */
-  Arg build();
 
 private:
   /** @copydoc Arg::m_short */
