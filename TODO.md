@@ -1,5 +1,9 @@
 # TODOs
 
+## Quick
+
+- Add information about theme to the docs footer
+
 ## v0.1
 
 - Do basic implementation of App, Arg, Command, PositionalArg and their builders.
