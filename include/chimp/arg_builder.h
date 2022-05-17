@@ -23,10 +23,24 @@ public:
   ArgBuilder& operator=(const ArgBuilder&) = delete;
   ArgBuilder& operator=(ArgBuilder&&) = default;
 
-  /** Sets Arg's short version. */
-  ArgBuilder& short_arg(const char) noexcept;
-  /** Sets Arg's long version. */
-  ArgBuilder& long_arg(const std::string) noexcept;
+  /**
+   * Sets Arg's short version.
+   *
+   * @invariant Provided value must be an **alphanumeric** character.
+   * If it is violated this function will throw @ref LogicError.
+   */
+  ArgBuilder& short_arg(const char);
+  /**
+   * Sets Arg's long version.
+   *
+   * @invariant Provided value must have following properties:
+   *   - Must be non empty
+   *   - Must contain only alphanumeric characters and `-` (hyphen)
+   *   - It cannot start with a `-`
+   *
+   * @invariant If it is violated this function will throw @ref LogicError.
+   */
+  ArgBuilder& long_arg(const std::string);
 
   /**
    * Creates and returns new @ref Arg.

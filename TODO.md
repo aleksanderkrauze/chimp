@@ -10,6 +10,7 @@
 - write tests
 - write documentation
 - create `CHANGELOG.md`
+- Maybe store log with warnings for developers in App?
 
 ## v0.2
 
