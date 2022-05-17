@@ -8,6 +8,7 @@
 
 namespace chimp {
 
+/** @param builder ArgBuilder used to create Arg */
 Arg::Arg(ArgBuilder&& builder)
     : m_short{builder.m_short}
     , m_long{builder.m_long} {}

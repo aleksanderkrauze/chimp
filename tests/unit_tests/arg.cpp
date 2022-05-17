@@ -14,7 +14,7 @@ TEST(Arg, member_variables_values_from_empty_builder) {
 
 TEST(Arg, member_variables_values_from_full_builder) {
   const auto arg =
-    chimp::Arg::builder().short_name('p').long_name("position").build();
+    chimp::Arg::builder().short_arg('p').long_arg("position").build();
 
   ASSERT_EQ(tester.m_short(arg).value(), 'p');
   ASSERT_STREQ(tester.m_long(arg).value().c_str(), "position");

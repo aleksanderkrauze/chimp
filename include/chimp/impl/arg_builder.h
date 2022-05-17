@@ -15,14 +15,16 @@ ArgBuilder::ArgBuilder()
     , m_long{std::nullopt} {}
 
 // TODO: Validate passed name
-ArgBuilder& ArgBuilder::short_name(const char name) noexcept {
-  this->m_short = name;
+/** @param arg Arg's short version */
+ArgBuilder& ArgBuilder::short_arg(const char arg) noexcept {
+  this->m_short = arg;
   return *this;
 }
 
 // TODO: Validate passed name
-ArgBuilder& ArgBuilder::long_name(const std::string name) noexcept {
-  this->m_long = name;
+/** @param arg Arg's long version */
+ArgBuilder& ArgBuilder::long_arg(const std::string arg) noexcept {
+  this->m_long = arg;
   return *this;
 }
 

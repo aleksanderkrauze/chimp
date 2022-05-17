@@ -8,8 +8,12 @@
 
 namespace chimp {
 
+/**
+ * Builder class for @ref Arg.
+ */
 class ArgBuilder {
 public:
+  /** Constructs ArgBuilder. */
   ArgBuilder();
 
   ArgBuilder(const ArgBuilder&) = delete;
@@ -19,13 +23,23 @@ public:
   ArgBuilder& operator=(const ArgBuilder&) = delete;
   ArgBuilder& operator=(ArgBuilder&&) = default;
 
-  ArgBuilder& short_name(const char) noexcept;
-  ArgBuilder& long_name(const std::string) noexcept;
+  /** Sets Arg's short version. */
+  ArgBuilder& short_arg(const char) noexcept;
+  /** Sets Arg's long version. */
+  ArgBuilder& long_arg(const std::string) noexcept;
 
+  /**
+   * Creates and returns new @ref Arg.
+   *
+   * @warning This will move `*this` into Arg constructor.
+   * Any later usage of ArgBuilder object is an undefined behaviour.
+   */
   Arg build();
 
 private:
+  /** @copydoc Arg::m_short */
   std::optional<char> m_short;
+  /** @copydoc Arg::m_long */
   std::optional<std::string> m_long;
 
   friend Arg;

@@ -16,7 +16,7 @@ TEST(ArgBuilder, short_name) {
   auto builder = chimp::ArgBuilder();
   ASSERT_FALSE(tester.m_short(builder));
 
-  builder.short_name('n');
+  builder.short_arg('n');
 
   ASSERT_EQ(tester.m_short(builder).value(), 'n');
 }
@@ -25,7 +25,7 @@ TEST(ArgBuilder, long_name) {
   auto builder = chimp::ArgBuilder();
   ASSERT_FALSE(tester.m_short(builder));
 
-  builder.long_name("name");
+  builder.long_arg("name");
 
   ASSERT_STREQ(tester.m_long(builder).value().c_str(), "name");
 }
