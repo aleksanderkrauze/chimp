@@ -21,6 +21,27 @@ TEST(Arg, member_variables_values_from_full_builder) {
   ASSERT_STREQ(tester.m_long(arg).value().c_str(), "position");
 }
 
+TEST(Arg, bind) {
+  std::shared_ptr<Arg> arg_ptr;
+
+  std::shared_ptr<Arg> arg =
+    Arg::builder().short_arg('a').long_arg("all").build()->bind(arg_ptr);
+
+  ASSERT_EQ(arg_ptr.get(), arg.get());
+  ASSERT_TRUE(!(arg_ptr < arg || arg < arg_ptr));
+}
+
+TEST(Arg, bind_invariant_ptr_is_nullptr) {
+  std::shared_ptr<Arg> arg_ptr;
+  auto arg = Arg::builder().build();
+
+  // arg_ptr is empty so we can bind to it.
+  ASSERT_NO_THROW(arg->bind(arg_ptr));
+
+  // arg_ptr is no longer empty. Binding to it would be wrong.
+  ASSERT_THROW(arg->bind(arg_ptr), chimp::LogicError);
+}
+
 TEST(Arg, is_positional) {
   const auto positional = Arg::builder().build();
   const auto short_only = Arg::builder().short_arg('s').build();
@@ -28,8 +49,8 @@ TEST(Arg, is_positional) {
   const auto short_and_long =
     Arg::builder().short_arg('n').long_arg("num").build();
 
-  ASSERT_TRUE(positional.is_positional());
-  ASSERT_FALSE(short_only.is_positional());
-  ASSERT_FALSE(long_only.is_positional());
-  ASSERT_FALSE(short_and_long.is_positional());
+  ASSERT_TRUE(positional->is_positional());
+  ASSERT_FALSE(short_only->is_positional());
+  ASSERT_FALSE(long_only->is_positional());
+  ASSERT_FALSE(short_and_long->is_positional());
 }

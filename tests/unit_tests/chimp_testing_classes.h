@@ -56,8 +56,18 @@ public:
     return arg.m_short;
   }
 
+  const std::optional<char>&
+  m_short(const std::shared_ptr<Arg>& arg) const noexcept {
+    return this->m_short(*arg.get());
+  }
+
   const std::optional<std::string>& m_long(const Arg& arg) const noexcept {
     return arg.m_long;
+  }
+
+  const std::optional<std::string>&
+  m_long(const std::shared_ptr<Arg>& arg) const noexcept {
+    return this->m_long(*arg.get());
   }
 };
 

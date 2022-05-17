@@ -1,6 +1,7 @@
 #ifndef CHIMP_ARG_BUILDER_H
 #define CHIMP_ARG_BUILDER_H
 
+#include <memory>
 #include <optional>
 #include <string>
 
@@ -24,12 +25,12 @@ public:
   ArgBuilder& operator=(ArgBuilder&&) = default;
 
   /**
-   * Creates and returns new @ref Arg.
+   * Creates and returns new @ref Arg wrapped in std::shared_ptr.
    *
    * @warning This will move `*this` into Arg constructor.
    * Any later usage of ArgBuilder object is an undefined behaviour.
    */
-  Arg build();
+  std::shared_ptr<Arg> build();
 
   /**
    * Sets Arg's short version.

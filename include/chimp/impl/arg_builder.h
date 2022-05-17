@@ -17,8 +17,8 @@ ArgBuilder::ArgBuilder()
     : m_short{std::nullopt}
     , m_long{std::nullopt} {}
 
-Arg ArgBuilder::build() {
-  return Arg{std::move(*this)};
+std::shared_ptr<Arg> ArgBuilder::build() {
+  return std::make_shared<Arg>(Arg{std::move(*this)});
 }
 
 /** @param arg Arg's short version */
