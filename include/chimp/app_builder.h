@@ -1,10 +1,14 @@
 #ifndef CHIMP_APP_BUILDER_H
 #define CHIMP_APP_BUILDER_H
 
+#include <memory>
 #include <optional>
 #include <string>
+#include <vector>
 
 #include "chimp/common.h"
+
+#include "chimp/arg.h"
 
 namespace chimp {
 
@@ -40,6 +44,9 @@ public:
    */
   AppBuilder& about(const std::string) noexcept;
 
+  /** Adds argument to App's argument list. */
+  AppBuilder& arg(const std::shared_ptr<Arg>&) noexcept;
+
 private:
   /** @copydoc App::m_name */
   const std::string m_name;
@@ -50,6 +57,9 @@ private:
   std::optional<std::string> m_version;
   /** @copydoc App::m_about */
   std::optional<std::string> m_about;
+
+  /** @copydoc App::m_args */
+  std::vector<std::shared_ptr<Arg>> m_args;
 
   friend App;
 

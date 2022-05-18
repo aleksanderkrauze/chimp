@@ -39,6 +39,12 @@ AppBuilder& AppBuilder::about(const std::string about) noexcept {
   return *this;
 }
 
+/** @param arg Arg added to app's argument list */
+AppBuilder& AppBuilder::arg(const std::shared_ptr<Arg>& arg) noexcept {
+  this->m_args.push_back(arg);
+  return *this;
+}
+
 } // namespace chimp
 
 #endif // CHIMP_IMPL_APP_BUILDER_H

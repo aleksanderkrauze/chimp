@@ -1,10 +1,14 @@
 #ifndef CHIMP_APP_H
 #define CHIMP_APP_H
 
+#include <memory>
 #include <optional>
 #include <string>
+#include <vector>
 
 #include "chimp/common.h"
+
+#include "chimp/arg.h"
 
 namespace chimp {
 
@@ -51,6 +55,9 @@ private:
    * Will be displayed at the beginning of help screen.
    */
   const std::optional<std::string> m_about;
+
+  /** App's arguments */
+  std::vector<std::shared_ptr<Arg>> m_args;
 
 #ifdef CHIMP_BUILD_TESTING
   friend testing::AppTest;

@@ -13,7 +13,8 @@ App::App(AppBuilder&& builder)
     : m_name{builder.m_name}
     , m_author{builder.m_author}
     , m_version{builder.m_version}
-    , m_about{builder.m_about} {}
+    , m_about{builder.m_about}
+    , m_args{builder.m_args} {}
 
 /** @param name Application's name */
 AppBuilder App::builder(const std::string name) noexcept {
