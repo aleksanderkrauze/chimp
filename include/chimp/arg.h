@@ -32,7 +32,7 @@ namespace chimp {
  *                .short_arg('n')
  *                .long_arg("name")
  *                .build() // This returns std::shared_ptr<Arg>
- *               ->bind(arg_ptr); // We bind this to arg_ptr
+ *                ->bind(arg_ptr); // We bind this to arg_ptr
  *
  * // Now we can move arg into an App and safely refer to it through arg_ptr
  * ```
