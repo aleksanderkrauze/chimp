@@ -25,7 +25,7 @@ TEST(Arg, bind) {
   std::shared_ptr<Arg> arg_ptr;
 
   std::shared_ptr<Arg> arg =
-    Arg::builder().short_arg('a').long_arg("all").build()->bind(arg_ptr);
+    Arg::builder().short_arg('a').long_arg("all").build(arg_ptr);
 
   ASSERT_EQ(arg_ptr.get(), arg.get());
   ASSERT_TRUE(!(arg_ptr < arg || arg < arg_ptr));
@@ -36,10 +36,10 @@ TEST(Arg, bind_invariant_ptr_is_nullptr) {
   auto arg = Arg::builder().build();
 
   // arg_ptr is empty so we can bind to it.
-  ASSERT_NO_THROW(arg->bind(arg_ptr));
+  ASSERT_NO_THROW(Arg::builder().build(arg_ptr));
 
   // arg_ptr is no longer empty. Binding to it would be wrong.
-  ASSERT_THROW(arg->bind(arg_ptr), chimp::LogicError);
+  ASSERT_THROW(Arg::builder().build(arg_ptr), chimp::LogicError);
 }
 
 TEST(Arg, is_positional) {

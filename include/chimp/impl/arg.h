@@ -18,17 +18,6 @@ ArgBuilder Arg::builder() noexcept {
   return ArgBuilder{};
 }
 
-/** @param ptr Shared pointer to which we bind `this` */
-std::shared_ptr<Arg> Arg::bind(std::shared_ptr<Arg>& ptr) {
-  if (ptr) {
-    throw LogicError{"Attempted to bind Arg to a non empty shared pointer"};
-  }
-
-  ptr = this->shared_from_this();
-
-  return this->shared_from_this();
-}
-
 bool Arg::is_positional() const noexcept {
   return !(this->m_short.has_value() || this->m_long.has_value());
 }

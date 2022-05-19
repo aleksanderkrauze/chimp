@@ -33,6 +33,18 @@ public:
   std::shared_ptr<Arg> build();
 
   /**
+   * Creates and returns new @ref Arg wrapped in std::shared_ptr
+   * and binds it to other shared pointer.
+   *
+   * @invariant Passed shared pointer must be empty (having value std::nullptr).
+   * If not, then this function will throw @ref LogicError.
+   *
+   * @warning This will move `*this` into Arg constructor.
+   * Any later usage of ArgBuilder object is an undefined behaviour.
+   */
+  std::shared_ptr<Arg> build(std::shared_ptr<Arg>&);
+
+  /**
    * Sets Arg's short version.
    *
    * @invariant Provided value must be an **alphanumeric** character.

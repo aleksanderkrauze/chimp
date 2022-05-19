@@ -21,6 +21,20 @@ std::shared_ptr<Arg> ArgBuilder::build() {
   return std::make_shared<Arg>(Arg{std::move(*this)});
 }
 
+/** @param ptr Shared pointer to which we bind `*this` */
+std::shared_ptr<Arg> ArgBuilder::build(std::shared_ptr<Arg>& ptr) {
+  if (ptr) {
+    throw LogicError{"Attempted to bind Arg to a non empty shared pointer"};
+  }
+
+  // XXX: Do not use this after this line
+  auto shared = this->build();
+
+  ptr = shared;
+
+  return shared;
+}
+
 /** @param arg Arg's short version */
 ArgBuilder& ArgBuilder::short_arg(const char arg) {
   if (!std::isalnum(arg)) {

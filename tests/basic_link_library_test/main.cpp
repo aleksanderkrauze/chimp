@@ -14,15 +14,13 @@ int main(int argc, char* argv[]) {
                   chimp::Arg::builder()
                     .short_arg('a')
                     .long_arg("all")
-                    .build()
-                    ->bind(all_arg)
+                    .build(all_arg)
                 )
                .arg(
                   chimp::Arg::builder()
                     .short_arg('n')
                     .long_arg("number")
-                    .build()
-                    ->bind(num_arg)
+                    .build(num_arg)
                )
                .build();
   // clang-format on
