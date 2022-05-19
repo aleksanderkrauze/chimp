@@ -38,7 +38,14 @@ public:
   App& operator=(const App&) = delete;
   App& operator=(App&&) = delete;
 
-  /** Creates and returns new AppBuilder. */
+  /**
+   * Creates and returns new AppBuilder.
+   *
+   * @invariant App's name must be non-empty. If it is empty this function will
+   * throw LogicError.
+   *
+   * @throws LogicError
+   */
   static AppBuilder builder(const std::string) noexcept;
 
   void parse(int, char**);

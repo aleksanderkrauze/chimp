@@ -17,8 +17,15 @@ namespace chimp {
  */
 class AppBuilder {
 public:
-  /** Constructs AppBuilder. */
-  explicit AppBuilder(const std::string) noexcept;
+  /**
+   * Constructs AppBuilder.
+   *
+   * @invariant App's name must be non-empty. If it is empty this function will
+   * throw LogicError.
+   *
+   * @throws LogicError
+   */
+  explicit AppBuilder(const std::string);
 
   AppBuilder(const AppBuilder&) = delete;
   explicit AppBuilder(AppBuilder&&) = default;

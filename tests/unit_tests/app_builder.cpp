@@ -15,6 +15,11 @@ TEST(AppBuilder, initial_member_variables_values) {
   ASSERT_FALSE(tester.m_about(builder));
 }
 
+TEST(AppBuilder, name_invariant_non_empty) {
+  ASSERT_NO_THROW(chimp::AppBuilder("non-empty"));
+  ASSERT_THROW(chimp::AppBuilder(""), chimp::LogicError);
+}
+
 TEST(AppBuilder, author) {
   auto builder = chimp::AppBuilder("test");
   ASSERT_FALSE(tester.m_author(builder));

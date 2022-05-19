@@ -11,8 +11,9 @@
 namespace chimp {
 
 /** @param name Application's name */
-AppBuilder::AppBuilder(const std::string name) noexcept
-    : m_name{name}
+AppBuilder::AppBuilder(const std::string name)
+    : m_name{name.size() > 0 ? name
+                             : throw LogicError{"Passed empty name to App"}}
     , m_author{std::nullopt}
     , m_version{std::nullopt}
     , m_about{std::nullopt} {}
