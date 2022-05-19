@@ -1,6 +1,7 @@
 #ifndef CHIMP_IMPL_APP_BUILDER_H
 #define CHIMP_IMPL_APP_BUILDER_H
 
+#include <sstream>
 #include <utility>
 
 #include "chimp/common.h"
@@ -41,7 +42,29 @@ AppBuilder& AppBuilder::about(const std::string about) noexcept {
 }
 
 /** @param arg Arg added to app's argument list */
-AppBuilder& AppBuilder::arg(const std::shared_ptr<Arg>& arg) noexcept {
+AppBuilder& AppBuilder::arg(const std::shared_ptr<Arg>& arg) {
+  if (!arg) {
+    throw LogicError{"Passed nullptr shared pointer to AppBuilder::arg"};
+  }
+
+  const auto conflicting = [](const auto& x, const auto& y) -> bool {
+    if (x && y) {
+      return x.value() == y.value();
+    }
+
+    return false;
+  };
+  for (const auto& a : this->m_args) {
+    if (conflicting(a->short_arg(), arg->short_arg()) ||
+        conflicting(a->long_arg(), arg->long_arg())) {
+      std::ostringstream ss;
+      ss << "Cannot add `" << arg->name()
+         << "` Arg to App as it is conflicting with `" << a->name() << "` Arg";
+
+      throw LogicError{ss.str()};
+    }
+  }
+
   this->m_args.push_back(arg);
   return *this;
 }

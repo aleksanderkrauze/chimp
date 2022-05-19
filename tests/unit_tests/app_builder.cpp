@@ -47,3 +47,56 @@ TEST(AppBuilder, about) {
   ASSERT_STREQ(tester.m_about(builder).value().c_str(),
                "Short description of a program");
 }
+
+TEST(AppBuilder, arg) {
+  std::shared_ptr<chimp::Arg> first, second;
+
+  chimp::AppBuilder builder = chimp::AppBuilder("test");
+  builder.arg(chimp::ArgBuilder("first").short_arg('f').build(first));
+  builder.arg(chimp::ArgBuilder("second").long_arg("second").build(second));
+
+  const auto& args = tester.m_args(builder);
+
+  ASSERT_EQ(args.size(), 2);
+
+  ASSERT_TRUE(!(args[0] < first || first < args[0]));
+  ASSERT_TRUE(!(args[1] < second || second < args[1]));
+}
+
+TEST(AppBuilder, arg_invariant_not_nullptr) {
+  std::shared_ptr<chimp::Arg> null;
+  std::shared_ptr<chimp::Arg> not_null = chimp::ArgBuilder("not_null").build();
+
+  auto builder = chimp::AppBuilder("test");
+
+  ASSERT_NO_THROW(builder.arg(not_null));
+  ASSERT_THROW(builder.arg(null), chimp::LogicError);
+}
+
+TEST(AppBuilder, arg_invariant_unique_flags) {
+  std::shared_ptr<chimp::Arg> a, b, c;
+
+  a = chimp::ArgBuilder("a").short_arg('a').long_arg("aaa").build();
+  b = chimp::ArgBuilder("b").short_arg('b').long_arg("bbb").build();
+  c = chimp::ArgBuilder("c").short_arg('c').long_arg("ccc").build();
+
+  auto builder = chimp::AppBuilder("test");
+
+  ASSERT_NO_THROW(builder.arg(a));
+  ASSERT_NO_THROW(builder.arg(b));
+  ASSERT_NO_THROW(builder.arg(c));
+
+  ASSERT_THROW(builder.arg(b), chimp::LogicError);
+
+  ASSERT_THROW(builder.arg(chimp::ArgBuilder("test").short_arg('a').build()),
+               chimp::LogicError);
+  ASSERT_THROW(builder.arg(chimp::ArgBuilder("test").long_arg("aaa").build()),
+               chimp::LogicError);
+  ASSERT_THROW(
+    builder.arg(
+      chimp::ArgBuilder("test").short_arg('c').long_arg("ccc").build()),
+    chimp::LogicError);
+
+  ASSERT_NO_THROW(builder.arg(
+    chimp::ArgBuilder("test").short_arg('d').long_arg("ddd").build()));
+}

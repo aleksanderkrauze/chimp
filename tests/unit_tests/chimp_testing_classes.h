@@ -46,6 +46,11 @@ public:
   m_about(const AppBuilder& builder) const noexcept {
     return builder.m_about;
   }
+
+  const std::vector<std::shared_ptr<Arg>>&
+  m_args(const AppBuilder& builder) const noexcept {
+    return builder.m_args;
+  }
 };
 
 class chimp::testing::ArgTest {

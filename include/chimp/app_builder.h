@@ -51,8 +51,17 @@ public:
    */
   AppBuilder& about(const std::string) noexcept;
 
-  /** Adds argument to App's argument list. */
-  AppBuilder& arg(const std::shared_ptr<Arg>&) noexcept;
+  /**
+   * Adds argument to App's argument list.
+   *
+   * @invariant Provided Arg must have unique short and long forms among all
+   * previously added Args. It must also own some Arg and not be `nullptr`.
+   * If any of this conditions is not true this function will throw
+   * LogicError.
+   *
+   * @throws LogicError
+   */
+  AppBuilder& arg(const std::shared_ptr<Arg>&);
 
 private:
   /** @copydoc App::m_name */
