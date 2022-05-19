@@ -1,7 +1,8 @@
 # TODOs
 
-## Quick
+## Now
 
+- make this library a static/shared lib instead of header-only
 - Add information about theme to the docs footer
 
 ## v0.1
@@ -10,11 +11,11 @@
 - write tests
 - write documentation
 - create `CHANGELOG.md`
-- Maybe store log with warnings for developers in App?
 
 ## v0.2
 
 - add support for wide strings (or just Unicode codepoints)
 - make things `constexpr`
 - use templates that use their types to differentiate between their usage
-(is_positional for example)
+	(is_positional for example)
+- Add aliases for Args
