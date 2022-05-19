@@ -20,6 +20,11 @@ public:
   /** Constructs Error */
   explicit Error(const std::string) noexcept;
 
+  Error(const Error&) = delete;
+  explicit Error(Error&&) = default;
+  Error& operator=(const Error&) = delete;
+  Error& operator=(Error&&) = delete;
+
   virtual ~Error() = default;
 
   virtual const char* what() const noexcept final;
@@ -42,6 +47,11 @@ class LogicError : public Error {
 public:
   /** Constructs LogicError */
   explicit LogicError(const std::string) noexcept;
+
+  LogicError(const LogicError&) = delete;
+  explicit LogicError(LogicError&&) = default;
+  LogicError& operator=(const LogicError&) = delete;
+  LogicError& operator=(LogicError&&) = delete;
 };
 
 /**
@@ -56,6 +66,11 @@ class ParsingError : public Error {
 public:
   /** Constructs ParsingError */
   explicit ParsingError(const std::string) noexcept;
+
+  ParsingError(const ParsingError&) = delete;
+  explicit ParsingError(ParsingError&&) = default;
+  ParsingError& operator=(const ParsingError&) = delete;
+  ParsingError& operator=(ParsingError&&) = delete;
 };
 
 } // namespace chimp
