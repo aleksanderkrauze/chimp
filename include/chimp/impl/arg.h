@@ -25,6 +25,18 @@ ArgBuilder Arg::builder(const std::string name) {
   return ArgBuilder{name};
 }
 
+const std::string& Arg::name() const noexcept {
+  return this->m_name;
+}
+
+const std::optional<char>& Arg::short_arg() const noexcept {
+  return this->m_short;
+}
+
+const std::optional<std::string>& Arg::long_arg() const noexcept {
+  return this->m_long;
+}
+
 bool Arg::is_positional() const noexcept {
   return !(this->m_short.has_value() || this->m_long.has_value());
 }

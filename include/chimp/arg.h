@@ -54,6 +54,15 @@ public:
    */
   static ArgBuilder builder(const std::string);
 
+  /** Returns Arg's name */
+  const std::string& name() const noexcept;
+
+  /** Returns Arg's short format */
+  const std::optional<char>& short_arg() const noexcept;
+
+  /** Returns Arg's long format */
+  const std::optional<std::string>& long_arg() const noexcept;
+
   /** Returns `true` when Arg is a positional argument. */
   bool is_positional() const noexcept;
 

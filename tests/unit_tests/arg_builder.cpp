@@ -19,6 +19,27 @@ TEST(ArgBuilder, name_invariant_not_empty) {
   ASSERT_THROW(chimp::ArgBuilder(""), chimp::LogicError);
 }
 
+TEST(ArgBuilder, build) {
+  std::shared_ptr<chimp::Arg> arg_ptr;
+
+  std::shared_ptr<chimp::Arg> arg =
+    chimp::ArgBuilder("arg").short_arg('a').long_arg("all").build(arg_ptr);
+
+  ASSERT_EQ(arg_ptr.get(), arg.get());
+  ASSERT_TRUE(!(arg_ptr < arg || arg < arg_ptr));
+}
+
+TEST(ArgBuilder, build_invariant_ptr_is_nullptr) {
+  std::shared_ptr<chimp::Arg> arg_ptr;
+  auto arg = chimp::ArgBuilder("arg").build();
+
+  // arg_ptr is empty so we can bind to it.
+  ASSERT_NO_THROW(chimp::Arg::builder("arg").build(arg_ptr));
+
+  // arg_ptr is no longer empty. Binding to it would be wrong.
+  ASSERT_THROW(chimp::Arg::builder("arg").build(arg_ptr), chimp::LogicError);
+}
+
 TEST(ArgBuilder, short_arg) {
   auto builder = chimp::ArgBuilder("arg");
   ASSERT_FALSE(tester.m_short(builder));

@@ -22,25 +22,26 @@ TEST(Arg, member_variables_values_from_full_builder) {
   ASSERT_STREQ(tester.m_long(arg).value().c_str(), "position");
 }
 
-TEST(Arg, bind) {
-  std::shared_ptr<Arg> arg_ptr;
+TEST(Arg, name) {
+  const auto arg = Arg::builder("arg").build();
 
-  std::shared_ptr<Arg> arg =
-    Arg::builder("arg").short_arg('a').long_arg("all").build(arg_ptr);
-
-  ASSERT_EQ(arg_ptr.get(), arg.get());
-  ASSERT_TRUE(!(arg_ptr < arg || arg < arg_ptr));
+  ASSERT_STREQ(arg->name().c_str(), "arg");
 }
 
-TEST(Arg, bind_invariant_ptr_is_nullptr) {
-  std::shared_ptr<Arg> arg_ptr;
-  auto arg = Arg::builder("arg").build();
+TEST(Arg, short_arg) {
+  const auto arg1 = Arg::builder("arg").build();
+  ASSERT_FALSE(arg1->short_arg());
 
-  // arg_ptr is empty so we can bind to it.
-  ASSERT_NO_THROW(Arg::builder("arg").build(arg_ptr));
+  const auto arg2 = Arg::builder("arg").short_arg('x').build();
+  ASSERT_EQ(arg2->short_arg().value(), 'x');
+}
 
-  // arg_ptr is no longer empty. Binding to it would be wrong.
-  ASSERT_THROW(Arg::builder("arg").build(arg_ptr), chimp::LogicError);
+TEST(Arg, long_arg) {
+  const auto arg1 = Arg::builder("arg").build();
+  ASSERT_FALSE(arg1->long_arg());
+
+  const auto arg2 = Arg::builder("arg").long_arg("long").build();
+  ASSERT_STREQ(arg2->long_arg().value().c_str(), "long");
 }
 
 TEST(Arg, is_positional) {
