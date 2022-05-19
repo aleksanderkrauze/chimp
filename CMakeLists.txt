@@ -21,6 +21,7 @@ option(CHIMP_BUILD_INTERNAL_DOC
   "Build internal documentation. Useful for contributors"
   OFF
 )
+option(CHIMP_BUILD_EXAMPLES "Build chimp examples" ${IS_TOPLEVEL_PROJECT})
 
 configure_file(
   cmake/cmake_config.h.in
@@ -46,6 +47,10 @@ endif()
 
 if(CHIMP_BUILD_DOC)
   add_subdirectory(doc)
+endif()
+
+if(CHIMP_BUILD_EXAMPLES)
+  add_subdirectory(examples)
 endif()
 
 write_basic_package_version_file(
