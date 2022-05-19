@@ -1,6 +1,8 @@
 #ifndef CHIMP_IMPL_ARG_H
 #define CHIMP_IMPL_ARG_H
 
+#include <utility>
+
 #include "chimp/common.h"
 
 #include "chimp/arg.h"
@@ -11,8 +13,8 @@ namespace chimp {
 
 /** @param builder ArgBuilder used to create Arg */
 Arg::Arg(ArgBuilder&& builder)
-    : m_short{builder.m_short}
-    , m_long{builder.m_long} {}
+    : m_short{std::move(builder.m_short)}
+    , m_long{std::move(builder.m_long)} {}
 
 ArgBuilder Arg::builder() noexcept {
   return ArgBuilder{};
