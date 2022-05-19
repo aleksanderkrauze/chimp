@@ -9,19 +9,10 @@ project(chimp
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
-if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
-  set(IS_TOPLEVEL_PROJECT TRUE)
-else()
-  set(IS_TOPLEVEL_PROJECT FALSE)
-endif()
-
-option(CHIMP_BUILD_TESTING "Build chimp tests" ${IS_TOPLEVEL_PROJECT})
-option(CHIMP_BUILD_DOC "Build chimp's documentation" ${IS_TOPLEVEL_PROJECT})
-option(CHIMP_BUILD_INTERNAL_DOC
-  "Build internal documentation. Useful for contributors"
-  OFF
-)
-option(CHIMP_BUILD_EXAMPLES "Build chimp examples" ${IS_TOPLEVEL_PROJECT})
+option(CHIMP_BUILD_TESTING "Build chimp tests" NO)
+option(CHIMP_BUILD_DOC "Build chimp's documentation" NO)
+option(CHIMP_BUILD_INTERNAL_DOC "Build internal documentation. Useful for contributors" NO)
+option(CHIMP_BUILD_EXAMPLES "Build chimp examples" NO)
 
 configure_file(
   cmake/cmake_config.h.in
