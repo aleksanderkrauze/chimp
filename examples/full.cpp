@@ -11,13 +11,13 @@ int main(int argc, char* argv[]) {
                .version("1.0.0")
                .about("Simple app that doesn't do anything")
                .arg(
-                  chimp::Arg::builder()
+                  chimp::Arg::builder("all")
                     .short_arg('a')
                     .long_arg("all")
                     .build(all_arg)
                 )
                .arg(
-                  chimp::Arg::builder()
+                  chimp::Arg::builder("number")
                     .short_arg('n')
                     .long_arg("number")
                     .build(num_arg)

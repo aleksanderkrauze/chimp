@@ -75,6 +75,10 @@ class chimp::testing::ArgBuilderTest {
 public:
   ArgBuilderTest() = default;
 
+  const std::string& m_name(const ArgBuilder& builder) const noexcept {
+    return builder.m_name;
+  }
+
   const std::optional<char>& m_short(const ArgBuilder& builder) const noexcept {
     return builder.m_short;
   }

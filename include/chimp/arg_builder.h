@@ -14,8 +14,15 @@ namespace chimp {
  */
 class ArgBuilder {
 public:
-  /** Constructs ArgBuilder. */
-  ArgBuilder();
+  /**
+   * Constructs ArgBuilder.
+   *
+   * @invariant Provided name must be non-empty. If it is empty this function
+   * will throw a LogicError.
+   *
+   * @throws LogicError
+   */
+  explicit ArgBuilder(const std::string);
 
   ArgBuilder(const ArgBuilder&) = delete;
   explicit ArgBuilder(ArgBuilder&&) = default;
@@ -41,6 +48,8 @@ public:
    *
    * @warning This will move `*this` into Arg constructor.
    * Any later usage of ArgBuilder object is an undefined behaviour.
+   *
+   * @throws LogicError
    */
   std::shared_ptr<Arg> build(std::shared_ptr<Arg>&);
 
@@ -49,6 +58,8 @@ public:
    *
    * @invariant Provided value must be an **alphanumeric** character.
    * If it is violated this function will throw @ref LogicError.
+   *
+   * @throws LogicError
    */
   ArgBuilder& short_arg(const char);
   /**
@@ -60,10 +71,15 @@ public:
    *   - It cannot start with a `-`
    *
    * @invariant If it is violated this function will throw @ref LogicError.
+   *
+   * @throws LogicError
    */
   ArgBuilder& long_arg(const std::string);
 
 private:
+  /** @copydoc Arg::m_name */
+  std::string m_name;
+
   /** @copydoc Arg::m_short */
   std::optional<char> m_short;
   /** @copydoc Arg::m_long */

@@ -22,7 +22,7 @@ namespace chimp {
  * // This shared pointer initially does not own any Arg
  * std::shared_ptr<Arg> arg_ptr;
  *
- * auto arg = Arg::builder()
+ * auto arg = Arg::builder("name")
  *                .short_arg('n')
  *                .long_arg("name")
  *                .build(arg_ptr)
@@ -44,13 +44,27 @@ public:
   Arg& operator=(const Arg&) = delete;
   Arg& operator=(Arg&&) = delete;
 
-  /** Creates and returns new ArgBuilder */
-  static ArgBuilder builder() noexcept;
+  /**
+   * Creates and returns new ArgBuilder
+   *
+   * @invariant Provided name must be non-empty. If it is empty this function
+   * will throw a LogicError.
+   *
+   * @throws LogicError
+   */
+  static ArgBuilder builder(const std::string);
 
   /** Returns `true` when Arg is a positional argument. */
   bool is_positional() const noexcept;
 
 private:
+  /**
+   * Argument's name.
+   *
+   * It is not used to match on command line, but to differentiate
+   * between args when reporting errors (for developer or user).
+   */
+  const std::string m_name;
   /**
    * Argument's short form.
    *
@@ -63,6 +77,8 @@ private:
    * When for example set to `number` will match `--number` on command line.
    */
   const std::optional<std::string> m_long;
+
+  friend ArgBuilder;
 
 #ifdef CHIMP_BUILD_TESTING
   friend testing::ArgTest;
