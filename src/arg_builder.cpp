@@ -1,6 +1,3 @@
-#ifndef CHIMP_IMPL_ARG_BUILDER_H
-#define CHIMP_IMPL_ARG_BUILDER_H
-
 #include <cctype>
 #include <sstream>
 #include <utility>
@@ -90,5 +87,3 @@ ArgBuilder& ArgBuilder::long_arg(const std::string arg) {
 }
 
 } // namespace chimp
-
-#endif // CHIMP_IMPL_ARG_BUILDER_H

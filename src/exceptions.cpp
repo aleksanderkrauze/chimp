@@ -1,6 +1,3 @@
-#ifndef CHIMP_IMPL_EXCEPTIONS_H
-#define CHIMP_IMPL_EXCEPTIONS_H
-
 #include "chimp/common.h"
 
 #include "chimp/exceptions.h"
@@ -24,5 +21,3 @@ ParsingError::ParsingError(const std::string msg) noexcept
     : Error{msg} {}
 
 } // namespace chimp
-
-#endif // CHIMP_IMPL_EXCEPTIONS_H

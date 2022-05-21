@@ -1,6 +1,3 @@
-#ifndef CHIMP_IMPL_APP_H
-#define CHIMP_IMPL_APP_H
-
 #include <utility>
 
 #include "chimp/common.h"
@@ -28,5 +25,3 @@ void App::parse(int argc, char** argv) {
 }
 
 } // namespace chimp
-
-#endif // CHIMP_IMPL_APP_H
