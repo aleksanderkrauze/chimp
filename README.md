@@ -1,5 +1,5 @@
 # Chimp
-*Chimp is a modern parser*. It is a header only c++17 library for parsing command line arguments.
+*Chimp is a modern parser*. It is a c++17 library for parsing command line arguments.
 It is heavily inspired by Rust's great library [clap](https://crates.io/crates/clap).
 
 Parts of this document should be treated as a road map for the future rather than description of
