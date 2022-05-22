@@ -65,7 +65,8 @@ TEST(AppBuilder, arg) {
 
 TEST(AppBuilder, arg_invariant_not_nullptr) {
   std::shared_ptr<chimp::Arg> null;
-  std::shared_ptr<chimp::Arg> not_null = chimp::ArgBuilder("not_null").build();
+  std::shared_ptr<chimp::Arg> not_null =
+    chimp::ArgBuilder("not_null").takes_value(true).build();
 
   auto builder = chimp::AppBuilder("test");
 

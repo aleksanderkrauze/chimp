@@ -18,6 +18,10 @@ namespace chimp {
  * format. Positional on the other hand are matched according to their relative
  * position to each other.
  *
+ * Arguments can take value. By default they don't. If you would like for them
+ * to do call @ref ArgBuilder::takes_value with `true`. Positional arguments
+ * must take value.
+ *
  * ```
  * // This shared pointer initially does not own any Arg
  * std::shared_ptr<Arg> arg_ptr;
@@ -25,6 +29,7 @@ namespace chimp {
  * auto arg = Arg::builder("name")
  *                .short_arg('n')
  *                .long_arg("name")
+ *                .takes_value(true)
  *                .build(arg_ptr)
  *
  * // Now we can move arg into an App and safely refer to it through arg_ptr
@@ -86,6 +91,8 @@ private:
    * When for example set to `number` will match `--number` on command line.
    */
   const std::optional<std::string> m_long;
+  /** When true Arg takes a value */
+  const bool m_takes_value;
 
   friend ArgBuilder;
 

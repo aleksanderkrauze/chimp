@@ -20,6 +20,7 @@ int main(int argc, char* argv[]) {
                   chimp::Arg::builder("number")
                     .short_arg('n')
                     .long_arg("number")
+                    .takes_value(true)
                     .build(num_arg)
                )
                .build();

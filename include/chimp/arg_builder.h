@@ -34,14 +34,22 @@ public:
   /**
    * Creates and returns new @ref Arg wrapped in std::shared_ptr.
    *
+   * @invariant If Arg is positional (doesn't have set either short or long arg
+   * form) it must take value. If not this function will throw @ref LogicError.
+   *
    * @warning This will move `*this` into Arg constructor.
    * Any later usage of ArgBuilder object is an undefined behaviour.
+   *
+   * @throws LogicError
    */
   std::shared_ptr<Arg> build();
 
   /**
    * Creates and returns new @ref Arg wrapped in std::shared_ptr
    * and binds it to other shared pointer.
+   *
+   * In addition to following invariants all invariants from other overload of
+   * this function must be upheld.
    *
    * @invariant Passed shared pointer must be empty (having value std::nullptr).
    * If not, then this function will throw @ref LogicError.
@@ -76,6 +84,17 @@ public:
    */
   ArgBuilder& long_arg(const std::string);
 
+  /**
+   * If passed value is `true` then Arg constructed from this builder will take
+   * value.
+   *
+   * Default value for *takes_value* for new ArgBuilder is `false`. Set this to
+   * true if you want to not only check if some flag was present on command line
+   * but if you also want to pass with it some information. It **must** be set
+   * to `true` for positional arguments.
+   */
+  ArgBuilder& takes_value(const bool);
+
 private:
   /** @copydoc Arg::m_name */
   std::string m_name;
@@ -84,6 +103,8 @@ private:
   std::optional<char> m_short;
   /** @copydoc Arg::m_long */
   std::optional<std::string> m_long;
+  /** @copydoc Arg::m_takes_value */
+  bool m_takes_value;
 
   friend Arg;
 

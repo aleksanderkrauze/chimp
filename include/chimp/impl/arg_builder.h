@@ -21,9 +21,19 @@ ArgBuilder::ArgBuilder(const std::string name)
     : m_name{name.size() > 0 ? name
                              : throw LogicError{"Passed empty name to Arg"}}
     , m_short{std::nullopt}
-    , m_long{std::nullopt} {}
+    , m_long{std::nullopt}
+    , m_takes_value{false} {}
 
 std::shared_ptr<Arg> ArgBuilder::build() {
+  // Positional arguments must take value
+  if ((!this->m_short && !this->m_long) && !this->m_takes_value) {
+    std::ostringstream ss;
+    ss << "Cannot build positional argument `" << this->m_name
+       << "` that has takes_value set to false";
+
+    throw LogicError{ss.str()};
+  }
+
   return std::make_shared<Arg>(Arg{std::move(*this)});
 }
 
@@ -86,6 +96,12 @@ ArgBuilder& ArgBuilder::long_arg(const std::string arg) {
   }
 
   this->m_long = arg;
+  return *this;
+}
+
+/** @param option true or false */
+ArgBuilder& ArgBuilder::takes_value(const bool option) {
+  this->m_takes_value = option;
   return *this;
 }
 

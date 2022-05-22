@@ -31,13 +31,24 @@ TEST(ArgBuilder, build) {
 
 TEST(ArgBuilder, build_invariant_ptr_is_nullptr) {
   std::shared_ptr<chimp::Arg> arg_ptr;
-  auto arg = chimp::ArgBuilder("arg").build();
+  auto arg = chimp::ArgBuilder("arg").takes_value(true).build();
 
   // arg_ptr is empty so we can bind to it.
-  ASSERT_NO_THROW(chimp::Arg::builder("arg").build(arg_ptr));
+  ASSERT_NO_THROW(chimp::Arg::builder("arg").takes_value(true).build(arg_ptr));
 
   // arg_ptr is no longer empty. Binding to it would be wrong.
-  ASSERT_THROW(chimp::Arg::builder("arg").build(arg_ptr), chimp::LogicError);
+  ASSERT_THROW(chimp::Arg::builder("arg").takes_value(true).build(arg_ptr),
+               chimp::LogicError);
+}
+
+TEST(ArgBuilder, build_invariant_positional_arg_takes_value) {
+  std::shared_ptr<chimp::Arg> arg_ptr;
+
+  ASSERT_THROW(chimp::ArgBuilder("arg").build(), chimp::LogicError);
+  ASSERT_THROW(chimp::ArgBuilder("arg").build(arg_ptr), chimp::LogicError);
+
+  ASSERT_NO_THROW(chimp::ArgBuilder("arg").takes_value(true).build());
+  ASSERT_NO_THROW(chimp::ArgBuilder("arg").takes_value(true).build(arg_ptr));
 }
 
 TEST(ArgBuilder, short_arg) {

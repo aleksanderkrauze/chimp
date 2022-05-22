@@ -15,7 +15,8 @@ namespace chimp {
 Arg::Arg(ArgBuilder&& builder)
     : m_name{std::move(builder.m_name)}
     , m_short{std::move(builder.m_short)}
-    , m_long{std::move(builder.m_long)} {}
+    , m_long{std::move(builder.m_long)}
+    , m_takes_value{std::move(builder.m_takes_value)} {}
 
 /**
  * @param name name of the argument. It is used to communicate errors to
