@@ -12,7 +12,7 @@ namespace chimp {
 /**
  * Builder class for @ref Arg.
  */
-class ArgBuilder {
+class CHIMP_EXPORT ArgBuilder {
 public:
   /**
    * Constructs ArgBuilder.
@@ -22,14 +22,14 @@ public:
    *
    * @throws LogicError
    */
-  CHIMP_EXPORT explicit ArgBuilder(const std::string);
+  explicit ArgBuilder(const std::string);
 
-  CHIMP_EXPORT ArgBuilder(const ArgBuilder&) = delete;
-  CHIMP_EXPORT explicit ArgBuilder(ArgBuilder&&) = default;
-  CHIMP_EXPORT ~ArgBuilder() = default;
+  ArgBuilder(const ArgBuilder&) = delete;
+  explicit ArgBuilder(ArgBuilder&&) = default;
+  ~ArgBuilder() = default;
 
-  CHIMP_EXPORT ArgBuilder& operator=(const ArgBuilder&) = delete;
-  CHIMP_EXPORT ArgBuilder& operator=(ArgBuilder&&) = default;
+  ArgBuilder& operator=(const ArgBuilder&) = delete;
+  ArgBuilder& operator=(ArgBuilder&&) = default;
 
   /**
    * Creates and returns new @ref Arg wrapped in std::shared_ptr.
@@ -37,7 +37,7 @@ public:
    * @warning This will move `*this` into Arg constructor.
    * Any later usage of ArgBuilder object is an undefined behaviour.
    */
-  CHIMP_EXPORT std::shared_ptr<Arg> build();
+  std::shared_ptr<Arg> build();
 
   /**
    * Creates and returns new @ref Arg wrapped in std::shared_ptr
@@ -51,7 +51,7 @@ public:
    *
    * @throws LogicError
    */
-  CHIMP_EXPORT std::shared_ptr<Arg> build(std::shared_ptr<Arg>&);
+  std::shared_ptr<Arg> build(std::shared_ptr<Arg>&);
 
   /**
    * Sets Arg's short version.
@@ -61,7 +61,7 @@ public:
    *
    * @throws LogicError
    */
-  CHIMP_EXPORT ArgBuilder& short_arg(const char);
+  ArgBuilder& short_arg(const char);
   /**
    * Sets Arg's long version.
    *
@@ -74,7 +74,7 @@ public:
    *
    * @throws LogicError
    */
-  CHIMP_EXPORT ArgBuilder& long_arg(const std::string);
+  ArgBuilder& long_arg(const std::string);
 
 private:
   /** @copydoc Arg::m_name */

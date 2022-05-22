@@ -15,7 +15,7 @@ namespace chimp {
  * It inherits from `std::exception`. You should always expect some exceptions
  * will be thrown from this library and at least catch this base class.
  */
-class Error : public std::exception {
+class CHIMP_EXPORT Error : public std::exception {
 public:
   /** Constructs Error */
   CHIMP_EXPORT explicit Error(const std::string) noexcept;

@@ -15,7 +15,7 @@ namespace chimp {
 /**
  * Builder class for @ref App.
  */
-class AppBuilder {
+class CHIMP_EXPORT AppBuilder {
 public:
   /**
    * Constructs AppBuilder.
@@ -25,14 +25,14 @@ public:
    *
    * @throws LogicError
    */
-  CHIMP_EXPORT explicit AppBuilder(const std::string);
+  explicit AppBuilder(const std::string);
 
-  CHIMP_EXPORT AppBuilder(const AppBuilder&) = delete;
-  CHIMP_EXPORT explicit AppBuilder(AppBuilder&&) = default;
-  CHIMP_EXPORT ~AppBuilder() = default;
+  AppBuilder(const AppBuilder&) = delete;
+  explicit AppBuilder(AppBuilder&&) = default;
+  ~AppBuilder() = default;
 
-  CHIMP_EXPORT AppBuilder& operator=(const AppBuilder&) = delete;
-  CHIMP_EXPORT AppBuilder& operator=(AppBuilder&&) = delete;
+  AppBuilder& operator=(const AppBuilder&) = delete;
+  AppBuilder& operator=(AppBuilder&&) = delete;
 
   /**
    * Creates and returns new @ref App.
@@ -40,16 +40,16 @@ public:
    * @warning This will move `*this` into App constructor.
    * Any later usage of AppBuilder object is an undefined behaviour.
    */
-  CHIMP_EXPORT App build();
+  App build();
 
   /** Sets application's author(s). */
-  CHIMP_EXPORT AppBuilder& author(const std::string) noexcept;
+  AppBuilder& author(const std::string) noexcept;
   /** Sets application's version. */
-  CHIMP_EXPORT AppBuilder& version(const std::string) noexcept;
+  AppBuilder& version(const std::string) noexcept;
   /** Sets application's about (a short text description displayed at the
    * beginning of a help screen).
    */
-  CHIMP_EXPORT AppBuilder& about(const std::string) noexcept;
+  AppBuilder& about(const std::string) noexcept;
 
   /**
    * Adds argument to App's argument list.
@@ -61,7 +61,7 @@ public:
    *
    * @throws LogicError
    */
-  CHIMP_EXPORT AppBuilder& arg(const std::shared_ptr<Arg>&);
+  AppBuilder& arg(const std::shared_ptr<Arg>&);
 
 private:
   /** @copydoc App::m_name */
