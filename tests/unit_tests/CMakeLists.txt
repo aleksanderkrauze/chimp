@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.19)
 
 project(unit_tests)
 
@@ -21,7 +21,7 @@ foreach(FILENAME ${SRC})
   add_executable(${TARGET_NAME})
   target_sources(${TARGET_NAME} PRIVATE ${FILENAME})
   target_link_libraries(${TARGET_NAME}
-    chimp
+		chimp::chimp
     GTest::gtest
     GTest::gtest_main
   )
