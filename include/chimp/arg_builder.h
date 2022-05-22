@@ -22,14 +22,14 @@ public:
    *
    * @throws LogicError
    */
-  explicit ArgBuilder(const std::string);
+  CHIMP_EXPORT explicit ArgBuilder(const std::string);
 
-  ArgBuilder(const ArgBuilder&) = delete;
-  explicit ArgBuilder(ArgBuilder&&) = default;
-  ~ArgBuilder() = default;
+  CHIMP_EXPORT ArgBuilder(const ArgBuilder&) = delete;
+  CHIMP_EXPORT explicit ArgBuilder(ArgBuilder&&) = default;
+  CHIMP_EXPORT ~ArgBuilder() = default;
 
-  ArgBuilder& operator=(const ArgBuilder&) = delete;
-  ArgBuilder& operator=(ArgBuilder&&) = default;
+  CHIMP_EXPORT ArgBuilder& operator=(const ArgBuilder&) = delete;
+  CHIMP_EXPORT ArgBuilder& operator=(ArgBuilder&&) = default;
 
   /**
    * Creates and returns new @ref Arg wrapped in std::shared_ptr.
@@ -37,7 +37,7 @@ public:
    * @warning This will move `*this` into Arg constructor.
    * Any later usage of ArgBuilder object is an undefined behaviour.
    */
-  std::shared_ptr<Arg> build();
+  CHIMP_EXPORT std::shared_ptr<Arg> build();
 
   /**
    * Creates and returns new @ref Arg wrapped in std::shared_ptr
@@ -51,7 +51,7 @@ public:
    *
    * @throws LogicError
    */
-  std::shared_ptr<Arg> build(std::shared_ptr<Arg>&);
+  CHIMP_EXPORT std::shared_ptr<Arg> build(std::shared_ptr<Arg>&);
 
   /**
    * Sets Arg's short version.
@@ -61,7 +61,7 @@ public:
    *
    * @throws LogicError
    */
-  ArgBuilder& short_arg(const char);
+  CHIMP_EXPORT ArgBuilder& short_arg(const char);
   /**
    * Sets Arg's long version.
    *
@@ -74,7 +74,7 @@ public:
    *
    * @throws LogicError
    */
-  ArgBuilder& long_arg(const std::string);
+  CHIMP_EXPORT ArgBuilder& long_arg(const std::string);
 
 private:
   /** @copydoc Arg::m_name */

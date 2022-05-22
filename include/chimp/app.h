@@ -29,14 +29,14 @@ namespace chimp {
 class App {
 public:
   /** Constructs App from moved @ref AppBuilder. */
-  explicit App(AppBuilder&&);
+  CHIMP_EXPORT explicit App(AppBuilder&&);
 
-  App(const App&) = delete;
-  explicit App(App&&) = default;
-  ~App() = default;
+  CHIMP_EXPORT App(const App&) = delete;
+  CHIMP_EXPORT explicit App(App&&) = default;
+  CHIMP_EXPORT ~App() = default;
 
-  App& operator=(const App&) = delete;
-  App& operator=(App&&) = delete;
+  CHIMP_EXPORT App& operator=(const App&) = delete;
+  CHIMP_EXPORT App& operator=(App&&) = delete;
 
   /**
    * Creates and returns new AppBuilder.
@@ -46,9 +46,9 @@ public:
    *
    * @throws LogicError
    */
-  static AppBuilder builder(const std::string) noexcept;
+  CHIMP_EXPORT static AppBuilder builder(const std::string) noexcept;
 
-  void parse(int, char**);
+  CHIMP_EXPORT void parse(int, char**);
 
 private:
   /** Project's name. */

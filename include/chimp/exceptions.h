@@ -18,16 +18,16 @@ namespace chimp {
 class Error : public std::exception {
 public:
   /** Constructs Error */
-  explicit Error(const std::string) noexcept;
+  CHIMP_EXPORT explicit Error(const std::string) noexcept;
 
-  Error(const Error&) = delete;
-  explicit Error(Error&&) = default;
-  Error& operator=(const Error&) = delete;
-  Error& operator=(Error&&) = delete;
+  CHIMP_EXPORT Error(const Error&) = delete;
+  CHIMP_EXPORT explicit Error(Error&&) = default;
+  CHIMP_EXPORT Error& operator=(const Error&) = delete;
+  CHIMP_EXPORT Error& operator=(Error&&) = delete;
 
-  virtual ~Error() = default;
+  CHIMP_EXPORT virtual ~Error() = default;
 
-  virtual const char* what() const noexcept final;
+  CHIMP_EXPORT virtual const char* what() const noexcept final;
 
 private:
   /** Stored exception message */
@@ -46,12 +46,12 @@ private:
 class LogicError : public Error {
 public:
   /** Constructs LogicError */
-  explicit LogicError(const std::string) noexcept;
+  CHIMP_EXPORT explicit LogicError(const std::string) noexcept;
 
-  LogicError(const LogicError&) = delete;
-  explicit LogicError(LogicError&&) = default;
-  LogicError& operator=(const LogicError&) = delete;
-  LogicError& operator=(LogicError&&) = delete;
+  CHIMP_EXPORT LogicError(const LogicError&) = delete;
+  CHIMP_EXPORT explicit LogicError(LogicError&&) = default;
+  CHIMP_EXPORT LogicError& operator=(const LogicError&) = delete;
+  CHIMP_EXPORT LogicError& operator=(LogicError&&) = delete;
 };
 
 /**
@@ -65,12 +65,12 @@ public:
 class ParsingError : public Error {
 public:
   /** Constructs ParsingError */
-  explicit ParsingError(const std::string) noexcept;
+  CHIMP_EXPORT explicit ParsingError(const std::string) noexcept;
 
-  ParsingError(const ParsingError&) = delete;
-  explicit ParsingError(ParsingError&&) = default;
-  ParsingError& operator=(const ParsingError&) = delete;
-  ParsingError& operator=(ParsingError&&) = delete;
+  CHIMP_EXPORT ParsingError(const ParsingError&) = delete;
+  CHIMP_EXPORT explicit ParsingError(ParsingError&&) = default;
+  CHIMP_EXPORT ParsingError& operator=(const ParsingError&) = delete;
+  CHIMP_EXPORT ParsingError& operator=(ParsingError&&) = delete;
 };
 
 } // namespace chimp

@@ -35,14 +35,14 @@ namespace chimp {
 class Arg {
 public:
   /** Constructs Arg from moved @ref ArgBuilder. */
-  explicit Arg(ArgBuilder&&);
+  CHIMP_EXPORT explicit Arg(ArgBuilder&&);
 
-  Arg(const Arg&) = delete;
-  explicit Arg(Arg&&) = default;
-  ~Arg() = default;
+  CHIMP_EXPORT Arg(const Arg&) = delete;
+  CHIMP_EXPORT explicit Arg(Arg&&) = default;
+  CHIMP_EXPORT ~Arg() = default;
 
-  Arg& operator=(const Arg&) = delete;
-  Arg& operator=(Arg&&) = delete;
+  CHIMP_EXPORT Arg& operator=(const Arg&) = delete;
+  CHIMP_EXPORT Arg& operator=(Arg&&) = delete;
 
   /**
    * Creates and returns new ArgBuilder
@@ -52,19 +52,19 @@ public:
    *
    * @throws LogicError
    */
-  static ArgBuilder builder(const std::string);
+  CHIMP_EXPORT static ArgBuilder builder(const std::string);
 
   /** Returns Arg's name */
-  const std::string& name() const noexcept;
+  CHIMP_EXPORT const std::string& name() const noexcept;
 
   /** Returns Arg's short format */
-  const std::optional<char>& short_arg() const noexcept;
+  CHIMP_EXPORT const std::optional<char>& short_arg() const noexcept;
 
   /** Returns Arg's long format */
-  const std::optional<std::string>& long_arg() const noexcept;
+  CHIMP_EXPORT const std::optional<std::string>& long_arg() const noexcept;
 
   /** Returns `true` when Arg is a positional argument. */
-  bool is_positional() const noexcept;
+  CHIMP_EXPORT bool is_positional() const noexcept;
 
 private:
   /**
