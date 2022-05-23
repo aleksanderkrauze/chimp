@@ -10,11 +10,18 @@ jobs:
             | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
           sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
           sudo apt update
-          sudo apt install cmake ninja-build
+          sudo apt install cmake ninja-build libgtest-dev
+      - name: Build GTest
+        run: |
+          cd /usr/src/gtest
+          sudo cmake -G Ninja -S . -B build
+          sudo cmake --build build
+          sudo cmake --install build
       - name: Check out sources
         uses: actions/checkout@v2
       - name: Run tests
         run: |
           cmake -G Ninja -S tests -B build
           cd build
+          cmake --build .
           ctest --output-on-failure
