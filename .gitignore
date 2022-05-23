@@ -1,5 +1,5 @@
 # cmake build directory
-build/
+build*/
 
 # clangd
 .cache/
