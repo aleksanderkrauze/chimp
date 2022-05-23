@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.19)
 
 project(unit_tests)
 
@@ -9,10 +9,6 @@ if(NOT GTEST_FOUND)
   return()
 endif()
 
-# We must compile each source file as a different test,
-# because otherwise linker will throw an error saying that
-# symbols defined in chimp library are defined in multiple
-# places. This happens, because each source file includes chimp/chimp.h
 file(GLOB SRC ${PROJECT_SOURCE_DIR}/*.cpp)
 foreach(FILENAME ${SRC})
   get_filename_component(BASENAME ${FILENAME} NAME_WLE)
@@ -21,7 +17,7 @@ foreach(FILENAME ${SRC})
   add_executable(${TARGET_NAME})
   target_sources(${TARGET_NAME} PRIVATE ${FILENAME})
   target_link_libraries(${TARGET_NAME}
-    chimp
+		chimp::chimp
     GTest::gtest
     GTest::gtest_main
   )

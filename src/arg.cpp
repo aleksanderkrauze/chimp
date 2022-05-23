@@ -1,6 +1,3 @@
-#ifndef CHIMP_IMPL_ARG_H
-#define CHIMP_IMPL_ARG_H
-
 #include <utility>
 
 #include "chimp/common.h"
@@ -43,5 +40,3 @@ bool Arg::is_positional() const noexcept {
 }
 
 } // namespace chimp
-
-#endif // CHIMP_IMPL_ARG_H

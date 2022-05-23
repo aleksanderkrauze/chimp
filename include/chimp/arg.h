@@ -37,7 +37,7 @@ namespace chimp {
  *
  * @see @ref ArgBuilder
  */
-class Arg {
+class CHIMP_EXPORT Arg {
 public:
   /** Constructs Arg from moved @ref ArgBuilder. */
   explicit Arg(ArgBuilder&&);

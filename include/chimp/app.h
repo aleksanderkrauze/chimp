@@ -26,7 +26,7 @@ namespace chimp {
  *
  * @see @ref AppBuilder
  */
-class App {
+class CHIMP_EXPORT App {
 public:
   /** Constructs App from moved @ref AppBuilder. */
   explicit App(AppBuilder&&);

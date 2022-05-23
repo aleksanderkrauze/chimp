@@ -1,6 +1,3 @@
-#ifndef CHIMP_IMPL_ARG_BUILDER_H
-#define CHIMP_IMPL_ARG_BUILDER_H
-
 #include <cctype>
 #include <sstream>
 #include <utility>
@@ -106,5 +103,3 @@ ArgBuilder& ArgBuilder::takes_value(const bool option) {
 }
 
 } // namespace chimp
-
-#endif // CHIMP_IMPL_ARG_BUILDER_H

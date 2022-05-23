@@ -12,7 +12,7 @@ namespace chimp {
 /**
  * Builder class for @ref Arg.
  */
-class ArgBuilder {
+class CHIMP_EXPORT ArgBuilder {
 public:
   /**
    * Constructs ArgBuilder.

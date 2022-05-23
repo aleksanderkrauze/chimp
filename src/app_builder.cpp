@@ -1,6 +1,3 @@
-#ifndef CHIMP_IMPL_APP_BUILDER_H
-#define CHIMP_IMPL_APP_BUILDER_H
-
 #include <sstream>
 #include <utility>
 
@@ -8,6 +5,7 @@
 
 #include "chimp/app.h"
 #include "chimp/app_builder.h"
+#include "chimp/exceptions.h"
 
 namespace chimp {
 
@@ -70,5 +68,3 @@ AppBuilder& AppBuilder::arg(const std::shared_ptr<Arg>& arg) {
 }
 
 } // namespace chimp
-
-#endif // CHIMP_IMPL_APP_BUILDER_H

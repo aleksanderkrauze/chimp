@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.12)
+cmake_minimum_required(VERSION 3.19)
 
 project(chimp_examples)
 
@@ -8,5 +8,5 @@ foreach(FILENAME ${SRC})
   set(TARGET_NAME ${PROJECT_NAME}_${BASENAME})
 
   add_executable(${TARGET_NAME} ${FILENAME})
-  target_link_libraries(${TARGET_NAME} chimp)
+  target_link_libraries(${TARGET_NAME} chimp::chimp)
 endforeach()

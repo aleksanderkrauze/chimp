@@ -15,7 +15,7 @@ namespace chimp {
 /**
  * Builder class for @ref App.
  */
-class AppBuilder {
+class CHIMP_EXPORT AppBuilder {
 public:
   /**
    * Constructs AppBuilder.
