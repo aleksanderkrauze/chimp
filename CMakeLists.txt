@@ -81,12 +81,6 @@ if(CHIMP_INCLUDE_PACKAGING)
 	       CACHE STRING "Path to chimp CMake files")
 	endif()
 
-
-	write_basic_package_version_file(
-	  chimpConfigVersion.cmake
-	  COMPATIBILITY SameMajorVersion
-	)
-
 	install(TARGETS chimp EXPORT chimp_Targets
 	        RUNTIME COMPONENT chimp_Runtime
 	        LIBRARY COMPONENT chimp_Runtime
@@ -110,7 +104,7 @@ if(CHIMP_INCLUDE_PACKAGING)
 
 	install(EXPORT chimp_Targets
 					DESTINATION "${CHIMP_INSTALL_CMAKEDIR}"
-	        NAMESPACE SomeLib::
+	        NAMESPACE chimp::
 	        FILE chimp-${type}-targets.cmake
 	        COMPONENT chimp_Development
 	)
@@ -120,5 +114,10 @@ if(CHIMP_INCLUDE_PACKAGING)
 		"${CMAKE_CURRENT_BINARY_DIR}/chimpConfigVersion.cmake"
 	  DESTINATION ${CHIMP_INSTALL_CMAKEDIR}
 		COMPONENT chimp_Development
+	)
+
+	write_basic_package_version_file(
+	  chimpConfigVersion.cmake
+	  COMPATIBILITY SameMajorVersion
 	)
 endif()
