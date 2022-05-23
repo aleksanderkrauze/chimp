@@ -1,9 +1,3 @@
-This project is dual-licenced under GPLv3-only and LGPLv3-only licences.
-
-This means that it can be used in both free and proprietary projects.
-If you use it in a proprietary project you need to say that you use this library
-and point to a LGPL licence. This is all you have to do if you use an unmodified
-version of this project. If you make modifications you must release them under
-either LGPL or GPL licence.
+This project is dual-licenced under GPLv3 and LGPLv3 licences.
 
 Copies of both licences are distributed alongside source code of this library.
