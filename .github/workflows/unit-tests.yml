@@ -1,0 +1,20 @@
+name: Unit tests
+on: [ 'push' ]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Linux dependencies
+        run: |
+          wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null \
+            | gpg --dearmor - | sudo tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+          sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+          sudo apt update
+          sudo apt install cmake ninja-build
+      - name: Check out sources
+        uses: actions/checkout@v2
+      - name: Run tests
+        run: |
+          cmake -G Ninja -S tests -B build
+          cd build
+          ctest --output-on-failure
