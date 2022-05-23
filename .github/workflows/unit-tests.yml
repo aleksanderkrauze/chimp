@@ -11,11 +11,14 @@ jobs:
           sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
           sudo apt update
           sudo apt install cmake ninja-build libgtest-dev
+      - name: Get number of CPU cores
+        uses: SimenB/github-actions-cpu-cores@v1
+        id: cpu-cores
       - name: Build GTest
         run: |
           cd /usr/src/gtest
           sudo cmake -G Ninja -S . -B build
-          sudo cmake --build build
+          sudo cmake --build build -j ${{ steps.cpu-cores.outputs.count }}
           sudo cmake --install build
       - name: Check out sources
         uses: actions/checkout@v3
@@ -23,5 +26,5 @@ jobs:
         run: |
           cmake -G Ninja -S tests -B build
           cd build
-          cmake --build .
+          cmake --build . -j ${{ steps.cpu-cores.outputs.count }}
           ctest --output-on-failure

@@ -26,10 +26,13 @@ jobs:
       - name: Enable Developer Command Prompt
         if: runner.os == 'Windows'
         uses: ilammy/msvc-dev-cmd@v1
+      - name: Get number of CPU cores
+        uses: SimenB/github-actions-cpu-cores@v1
+        id: cpu-cores
       - name: Check out sources
         uses: actions/checkout@v3
       - name: Run tests
         run: |
           cmake -G Ninja -S tests-integration -B build-integration
           cd build-integration
-          ctest --output-on-failure
+          ctest --output-on-failure -j ${{ steps.cpu-cores.outputs.count }}
