@@ -2,7 +2,6 @@
 
 ## Now
 
-- make this library a static/shared lib instead of header-only
 - Add information about theme to the docs footer
 
 ## v0.1

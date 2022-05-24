@@ -18,39 +18,39 @@ endif ()
 add_test(NAME build_shared
          COMMAND ${CMAKE_CTEST_COMMAND}
          --build-and-test "${CMAKE_CURRENT_LIST_DIR}/.." "${CMAKE_CURRENT_BINARY_DIR}/build-shared"
-				 --build-generator ${CMAKE_GENERATOR}
+         --build-generator ${CMAKE_GENERATOR}
          --build-options -DBUILD_SHARED_LIBS=YES -DCMAKE_BUILD_TYPE=Release
 )
 
 add_test(NAME build_static
          COMMAND ${CMAKE_CTEST_COMMAND}
          --build-and-test "${CMAKE_CURRENT_LIST_DIR}/.." "${CMAKE_CURRENT_BINARY_DIR}/build-static"
-				 --build-generator ${CMAKE_GENERATOR}
+         --build-generator ${CMAKE_GENERATOR}
          --build-options -DBUILD_SHARED_LIBS=NO ${static_opts} -DCMAKE_BUILD_TYPE=Release
 )
 
 add_test(NAME install_shared
          COMMAND ${CMAKE_COMMAND}
-				 --install "${CMAKE_CURRENT_BINARY_DIR}/build-shared"
-				 --prefix "${CMAKE_CURRENT_BINARY_DIR}/install-shared"
+         --install "${CMAKE_CURRENT_BINARY_DIR}/build-shared"
+         --prefix "${CMAKE_CURRENT_BINARY_DIR}/install-shared"
 )
 
 add_test(NAME install_shared_both
          COMMAND ${CMAKE_COMMAND}
-				 --install "${CMAKE_CURRENT_BINARY_DIR}/build-shared"
-				 --prefix "${CMAKE_CURRENT_BINARY_DIR}/install-both"
+         --install "${CMAKE_CURRENT_BINARY_DIR}/build-shared"
+         --prefix "${CMAKE_CURRENT_BINARY_DIR}/install-both"
 )
 
 add_test(NAME install_static
          COMMAND ${CMAKE_COMMAND}
-				 --install "${CMAKE_CURRENT_BINARY_DIR}/build-static"
-				 --prefix "${CMAKE_CURRENT_BINARY_DIR}/install-static"
+         --install "${CMAKE_CURRENT_BINARY_DIR}/build-static"
+         --prefix "${CMAKE_CURRENT_BINARY_DIR}/install-static"
 )
 
 add_test(NAME install_static_both
          COMMAND ${CMAKE_COMMAND}
-				 --install "${CMAKE_CURRENT_BINARY_DIR}/build-static"
-				 --prefix "${CMAKE_CURRENT_BINARY_DIR}/install-both"
+         --install "${CMAKE_CURRENT_BINARY_DIR}/build-static"
+         --prefix "${CMAKE_CURRENT_BINARY_DIR}/install-both"
 )
 
 set_tests_properties(build_shared build_static PROPERTIES
@@ -59,7 +59,7 @@ set_tests_properties(build_shared build_static PROPERTIES
 
 set_tests_properties(install_shared install_static install_shared_both install_static_both PROPERTIES
 	                   FIXTURES_SETUP "installs"
-										 FIXTURES_REQUIRED "builds"
+                     FIXTURES_REQUIRED "builds"
 )
 
 # Function to encapsulate test creation
@@ -119,21 +119,21 @@ add_integration_test(
 add_integration_test(
     NAME cache-shared
     ROOT install-both
-		OPTIONS -DCHIMP_SHARED_LIBS=YES
+    OPTIONS -DCHIMP_SHARED_LIBS=YES
     EXPECTED shared
 )
 
 add_integration_test(
     NAME cache-static-override
     ROOT install-both
-		OPTIONS -DCHIMP_SHARED_LIBS=NO -DBUILD_SHARED_LIBS=YES
+    OPTIONS -DCHIMP_SHARED_LIBS=NO -DBUILD_SHARED_LIBS=YES
     EXPECTED static
 )
 
 add_integration_test(
     NAME cache-shared-override
     ROOT install-both
-		OPTIONS -DCHIMP_SHARED_LIBS=YES -DBUILD_SHARED_LIBS=NO
+    OPTIONS -DCHIMP_SHARED_LIBS=YES -DBUILD_SHARED_LIBS=NO
     EXPECTED shared
 )
 
@@ -189,7 +189,7 @@ add_integration_test(
 add_integration_test(
     NAME fail-cache-static-shared-only
     ROOT install-shared
-		OPTIONS -DCHIMP_SHARED_LIBS=NO
+    OPTIONS -DCHIMP_SHARED_LIBS=NO
     EXPECTED "chimp `static` libraries were requested but not found"
 )
 
@@ -210,14 +210,14 @@ add_integration_test(
 add_integration_test(
     NAME cache-static-only
     ROOT install-static
-		OPTIONS -DCHIMP_SHARED_LIBS=NO -DBUILD_SHARED_LIBS=YES
+    OPTIONS -DCHIMP_SHARED_LIBS=NO -DBUILD_SHARED_LIBS=YES
     EXPECTED static
 )
 
 add_integration_test(
     NAME fail-cache-shared-static-only
     ROOT install-static
-		OPTIONS -DCHIMP_SHARED_LIBS=YES
+    OPTIONS -DCHIMP_SHARED_LIBS=YES
     EXPECTED "chimp `shared` libraries were requested but not found"
 )
 
