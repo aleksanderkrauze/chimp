@@ -17,14 +17,14 @@ endif ()
 # Set up install trees for subsequent tests
 add_test(NAME build_shared
          COMMAND ${CMAKE_CTEST_COMMAND}
-         --build-and-test "${CMAKE_CURRENT_LIST_DIR}/.." "${CMAKE_CURRENT_BINARY_DIR}/build-shared"
+         --build-and-test "${CMAKE_CURRENT_LIST_DIR}/../.." "${CMAKE_CURRENT_BINARY_DIR}/build-shared"
          --build-generator ${CMAKE_GENERATOR}
          --build-options -DBUILD_SHARED_LIBS=YES -DCMAKE_BUILD_TYPE=Release
 )
 
 add_test(NAME build_static
          COMMAND ${CMAKE_CTEST_COMMAND}
-         --build-and-test "${CMAKE_CURRENT_LIST_DIR}/.." "${CMAKE_CURRENT_BINARY_DIR}/build-static"
+         --build-and-test "${CMAKE_CURRENT_LIST_DIR}/../.." "${CMAKE_CURRENT_BINARY_DIR}/build-static"
          --build-generator ${CMAKE_GENERATOR}
          --build-options -DBUILD_SHARED_LIBS=NO ${static_opts} -DCMAKE_BUILD_TYPE=Release
 )
