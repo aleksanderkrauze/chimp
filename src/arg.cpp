@@ -13,7 +13,8 @@ Arg::Arg(ArgBuilder&& builder)
     : m_name{std::move(builder.m_name)}
     , m_short{std::move(builder.m_short)}
     , m_long{std::move(builder.m_long)}
-    , m_takes_value{std::move(builder.m_takes_value)} {}
+    , m_takes_value{std::move(builder.m_takes_value)}
+    , m_was_present{false} {}
 
 /**
  * @param name name of the argument. It is used to communicate errors to
@@ -37,6 +38,14 @@ const std::optional<std::string>& Arg::long_arg() const noexcept {
 
 bool Arg::is_positional() const noexcept {
   return !(this->m_short.has_value() || this->m_long.has_value());
+}
+
+void Arg::was_present(bool flag) noexcept {
+  this->m_was_present = flag;
+}
+
+bool Arg::was_present() const noexcept {
+  return this->m_was_present;
 }
 
 } // namespace chimp

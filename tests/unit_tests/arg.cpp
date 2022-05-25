@@ -14,6 +14,8 @@ TEST(Arg, member_variables_values_from_empty_builder) {
   ASSERT_FALSE(tester.m_long(arg));
 
   ASSERT_TRUE(tester.m_takes_value(arg));
+
+  ASSERT_FALSE(tester.m_was_present(arg));
 }
 
 TEST(Arg, member_variables_values_from_full_builder) {
@@ -83,4 +85,14 @@ TEST(Arg, not_positional_takes_value) {
     Arg::builder("flag").short_arg('f').takes_value(true).build();
 
   ASSERT_TRUE(tester.m_takes_value(arg));
+}
+
+TEST(Arg, was_present) {
+  auto arg = Arg::builder("arg").short_arg('a').build();
+
+  ASSERT_FALSE(arg->was_present());
+
+  arg->was_present(true);
+
+  ASSERT_TRUE(arg->was_present());
 }

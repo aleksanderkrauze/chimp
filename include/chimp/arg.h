@@ -71,6 +71,11 @@ public:
   /** Returns `true` when Arg is a positional argument. */
   bool is_positional() const noexcept;
 
+  /** Sets was_present flag to given value */
+  void was_present(bool) noexcept;
+  /** Returns was_present flag */
+  bool was_present() const noexcept;
+
 private:
   /**
    * Argument's name.
@@ -93,6 +98,9 @@ private:
   const std::optional<std::string> m_long;
   /** When true Arg takes a value */
   const bool m_takes_value;
+
+  /** True when arg was present in parsed CLI arguments */
+  bool m_was_present;
 
   friend ArgBuilder;
 
