@@ -48,7 +48,7 @@ public:
    */
   static AppBuilder builder(const std::string) noexcept;
 
-  void parse(int, char**);
+  void parse(int, char const* const*);
 
 private:
   /** Project's name. */
