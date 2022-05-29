@@ -3,9 +3,9 @@
 #include <chimp/chimp.h>
 
 int main(int argc, char* argv[]) {
-  try {
-    std::shared_ptr<chimp::Arg> all_arg, num_arg;
+  std::shared_ptr<chimp::Arg> all_arg, num_arg;
 
+  try {
     // clang-format off
     auto app = chimp::App::builder("test")
                  .author("Aleksander Krauze")
