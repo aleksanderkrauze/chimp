@@ -1,5 +1,4 @@
 #include <cctype>
-#include <sstream>
 #include <utility>
 
 #include "chimp/common.h"
@@ -24,11 +23,8 @@ ArgBuilder::ArgBuilder(const std::string name)
 std::shared_ptr<Arg> ArgBuilder::build() {
   // Positional arguments must take value
   if ((!this->m_short && !this->m_long) && !this->m_takes_value) {
-    std::ostringstream ss;
-    ss << "Cannot build positional argument `" << this->m_name
-       << "` that has takes_value set to false";
-
-    throw LogicError{ss.str()};
+    throw LogicError{"Cannot build positional argument `", this->m_name,
+                     "` that has takes_value set to false"};
   }
 
   return std::make_shared<Arg>(Arg{std::move(*this)});
@@ -37,12 +33,9 @@ std::shared_ptr<Arg> ArgBuilder::build() {
 /** @param ptr Shared pointer to which we bind `*this` */
 std::shared_ptr<Arg> ArgBuilder::build(std::shared_ptr<Arg>& ptr) {
   if (ptr) {
-    std::ostringstream ss;
-    ss << "Attempted to bind `" << this->m_name
-       << "` Arg to a non empty shared pointer that is owning `" << ptr->m_name
-       << "` Arg";
-
-    throw LogicError{ss.str()};
+    throw LogicError{"Attempted to bind `", this->m_name,
+                     "` Arg to a non empty shared pointer that is owning `",
+                     ptr->m_name, "` Arg"};
   }
 
   // XXX: Do not use this after this line
@@ -56,11 +49,8 @@ std::shared_ptr<Arg> ArgBuilder::build(std::shared_ptr<Arg>& ptr) {
 /** @param arg Arg's short version */
 ArgBuilder& ArgBuilder::short_arg(const char arg) {
   if (!std::isalnum(arg)) {
-    std::ostringstream ss;
-    ss << "Provided short argument `" << arg << "` for `" << this->m_name
-       << "` Arg is not alphanumeric";
-
-    throw LogicError{ss.str()};
+    throw LogicError{"Provided short argument `", arg, "` for `", this->m_name,
+                     "` Arg is not alphanumeric"};
   }
 
   this->m_short = arg;
@@ -70,26 +60,22 @@ ArgBuilder& ArgBuilder::short_arg(const char arg) {
 /** @param arg Arg's long version */
 ArgBuilder& ArgBuilder::long_arg(const std::string arg) {
   if (arg.length() < 2) {
-    std::ostringstream ss;
-    ss << "Provided long argument for `" << this->m_name
-       << "` Arg is shorter than 2 characters";
-
-    throw LogicError{ss.str()};
+    throw LogicError{"Provided long argument for `", this->m_name,
+                     "` Arg is shorter than 2 characters"};
   }
   if (arg[0] == '-') {
-    std::ostringstream ss;
-    ss << "Provided long argument `" << arg << "` for `" << this->m_name
-       << "` Arg begins with a hyphen";
-
-    throw LogicError{ss.str()};
+    throw LogicError{"Provided long argument `", arg, "` for `", this->m_name,
+                     "` Arg begins with a hyphen"};
   }
   for (const auto& c : arg) {
     if (!isalnum(c) && !(c == '-')) {
-      std::ostringstream ss;
-      ss << "Provided long argument `" << arg << "` for `" << this->m_name
-         << "` Arg contains an illegal character";
-
-      throw LogicError{ss.str()};
+      throw LogicError{"Provided long argument `",
+                       arg,
+                       "` for `",
+                       this->m_name,
+                       "` Arg contains an illegal character `",
+                       c,
+                       "`"};
     }
   }
 

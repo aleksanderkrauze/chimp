@@ -1,3 +1,5 @@
+#include <string>
+
 #include <gtest/gtest.h>
 
 #include "chimp/chimp.h"
@@ -51,5 +53,25 @@ TEST(ParsingError, catch_as_Error) {
     throw ParsingError{"logic error"};
   } catch (const Error& e) {
     ASSERT_STREQ(e.what(), "logic error");
+  }
+}
+
+TEST(Common, variadic_constructors) {
+  std::string one = "one ";
+
+  try {
+    throw Error{one, 2, " three"};
+  } catch (const Error& e) {
+    ASSERT_STREQ(e.what(), "one 2 three");
+  }
+  try {
+    throw LogicError{one, 2, " three"};
+  } catch (const LogicError& e) {
+    ASSERT_STREQ(e.what(), "one 2 three");
+  }
+  try {
+    throw ParsingError{one, 2, " three"};
+  } catch (const ParsingError& e) {
+    ASSERT_STREQ(e.what(), "one 2 three");
   }
 }

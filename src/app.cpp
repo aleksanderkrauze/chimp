@@ -1,5 +1,4 @@
 #include <algorithm>
-#include <sstream>
 #include <string_view>
 #include <utility>
 
@@ -29,10 +28,7 @@ void App::parse(int argc, char const* const* argv) {
     auto arg = std::string_view(argv[i]);
 
     if (arg.empty()) {
-      std::ostringstream ss;
-      ss << "argv[" << i << "] is empty";
-
-      throw ParsingError{ss.str()};
+      throw ParsingError{"argv[", i, "] is empty"};
     }
 
     if (arg[0] == '-') {
@@ -42,10 +38,7 @@ void App::parse(int argc, char const* const* argv) {
           arg.remove_prefix(2);
 
           if (arg.empty()) {
-            std::ostringstream ss;
-            ss << "argv[" << i << "] has empty long format";
-
-            throw ParsingError{ss.str()};
+            throw ParsingError{"argv[", i, "] has empty long format"};
           }
 
           const auto long_arg_matching = [arg](const auto argument) -> bool {
@@ -64,10 +57,7 @@ void App::parse(int argc, char const* const* argv) {
           if (match != std::end(arguments)) {
             match->get()->was_present(true);
           } else {
-            std::ostringstream ss;
-            ss << "Unknown argument --" << arg;
-
-            throw ParsingError{ss.str()};
+            throw ParsingError{"Unknown argument --", arg};
           }
         } else {
           // short argument(s)
@@ -90,18 +80,12 @@ void App::parse(int argc, char const* const* argv) {
             if (match != std::end(arguments)) {
               match->get()->was_present(true);
             } else {
-              std::ostringstream ss;
-              ss << "Unknown argument -" << c;
-
-              throw ParsingError{ss.str()};
+              throw ParsingError{"Unknown argument -", c};
             }
           }
         }
       } else {
-        std::ostringstream ss;
-        ss << "argv[" << i << "] is empty";
-
-        throw ParsingError{ss.str()};
+        throw ParsingError{"argv[", i, "] is empty"};
       }
     } else {
       // ignore for now

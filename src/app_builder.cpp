@@ -55,11 +55,9 @@ AppBuilder& AppBuilder::arg(const std::shared_ptr<Arg>& arg) {
   for (const auto& a : this->m_args) {
     if (conflicting(a->short_arg(), arg->short_arg()) ||
         conflicting(a->long_arg(), arg->long_arg())) {
-      std::ostringstream ss;
-      ss << "Cannot add `" << arg->name()
-         << "` Arg to App as it is conflicting with `" << a->name() << "` Arg";
-
-      throw LogicError{ss.str()};
+      throw LogicError{"Cannot add `", arg->name(),
+                       "` Arg to App as it is conflicting with `", a->name(),
+                       "` Arg"};
     }
   }
 

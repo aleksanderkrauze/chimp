@@ -2,6 +2,8 @@
 #define CHIMP_EXCEPTIONS_H
 
 #include <exception>
+#include <ostream>
+#include <sstream>
 #include <string>
 
 #include "chimp/common.h"
@@ -19,6 +21,7 @@ class CHIMP_EXPORT Error : public std::exception {
 public:
   /** Constructs Error */
   explicit Error(const std::string) noexcept;
+  template <typename... Ts> Error(Ts...) noexcept;
 
   Error(const Error&) = delete;
   explicit Error(Error&&) = default;
@@ -47,6 +50,7 @@ class CHIMP_EXPORT LogicError : public Error {
 public:
   /** Constructs LogicError */
   explicit LogicError(const std::string) noexcept;
+  template <typename... Ts> LogicError(Ts...) noexcept;
 
   LogicError(const LogicError&) = delete;
   explicit LogicError(LogicError&&) = default;
@@ -66,12 +70,42 @@ class CHIMP_EXPORT ParsingError : public Error {
 public:
   /** Constructs ParsingError */
   explicit ParsingError(const std::string) noexcept;
+  template <typename... Ts> ParsingError(Ts...) noexcept;
 
   ParsingError(const ParsingError&) = delete;
   explicit ParsingError(ParsingError&&) = default;
   ParsingError& operator=(const ParsingError&) = delete;
   ParsingError& operator=(ParsingError&&) = delete;
 };
+
+template <typename T>
+std::ostream& variadic_string_ostream(std::ostream& os, T val) {
+  return os << val;
+}
+
+template <typename T, typename... Ts>
+std::ostream& variadic_string_ostream(std::ostream& os, T head, Ts... tail) {
+  os << head;
+  return variadic_string_ostream(os, tail...);
+}
+
+template <typename... Ts> std::string variadic_string(Ts... vals) {
+  std::ostringstream ss;
+  variadic_string_ostream(ss, vals...);
+  return ss.str();
+}
+
+template <typename... Ts>
+Error::Error(Ts... vals) noexcept
+    : Error{variadic_string(vals...)} {}
+
+template <typename... Ts>
+LogicError::LogicError(Ts... vals) noexcept
+    : LogicError{variadic_string(vals...)} {}
+
+template <typename... Ts>
+ParsingError::ParsingError(Ts... vals) noexcept
+    : ParsingError{variadic_string(vals...)} {}
 
 } // namespace chimp
 
