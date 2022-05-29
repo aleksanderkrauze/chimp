@@ -34,5 +34,7 @@ set(DOXYGEN_GENERATE_TREEVIEW YES)
 set(DOXYGEN_HTML_EXTRA_STYLESHEET doxygen-awesome-css/doxygen-awesome.css)
 
 doxygen_add_docs(chimp_doc
-  ${PROJECT_SOURCE_DIR}/include ALL
+  ${PROJECT_SOURCE_DIR}/include
+  ${PROJECT_SOURCE_DIR}/src
+  ALL
 )
