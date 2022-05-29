@@ -5,7 +5,7 @@
 
 #include "chimp/arg.h"
 #include "chimp/arg_builder.h"
-#include "chimp/exceptions.h"
+#include "chimp/errors.h"
 
 namespace chimp {
 

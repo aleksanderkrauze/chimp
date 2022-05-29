@@ -6,7 +6,7 @@
 
 #include "chimp/app.h"
 #include "chimp/app_builder.h"
-#include "chimp/exceptions.h"
+#include "chimp/errors.h"
 
 namespace chimp {
 

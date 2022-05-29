@@ -7,6 +7,6 @@
 #include "chimp/app_builder.h"
 #include "chimp/arg.h"
 #include "chimp/arg_builder.h"
-#include "chimp/exceptions.h"
+#include "chimp/errors.h"
 
 #endif // CHIMP_CHIMP_H

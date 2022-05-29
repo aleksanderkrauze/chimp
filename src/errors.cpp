@@ -1,6 +1,6 @@
 #include "chimp/common.h"
 
-#include "chimp/exceptions.h"
+#include "chimp/errors.h"
 
 namespace chimp {
 

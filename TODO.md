@@ -3,6 +3,7 @@
 ## Now
 
 - Add information about theme to the docs footer
+- Fix CI. Check why integration tests sometimes fail.
 
 ## v0.1
 

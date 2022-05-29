@@ -1,5 +1,5 @@
-#ifndef CHIMP_EXCEPTIONS_H
-#define CHIMP_EXCEPTIONS_H
+#ifndef CHIMP_ERRORS_H
+#define CHIMP_ERRORS_H
 
 #include <exception>
 #include <ostream>
@@ -156,4 +156,4 @@ ParsingError::ParsingError(const T head, const Ts... tail) noexcept
 
 } // namespace chimp
 
-#endif // CHIMP_EXCEPTIONS_H
+#endif // CHIMP_ERRORS_H
