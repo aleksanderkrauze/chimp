@@ -92,8 +92,7 @@ std::ostream& variadic_string_ostream(std::ostream& os, const T val) {
 template <typename T, typename... Ts>
 std::ostream& variadic_string_ostream(std::ostream& os, const T head,
                                       const Ts... tail) {
-  os << head;
-  return variadic_string_ostream(os, tail...);
+  return variadic_string_ostream(os << head, tail...);
 }
 
 template <typename T, typename... Ts>
