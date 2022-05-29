@@ -21,7 +21,33 @@ class CHIMP_EXPORT Error : public std::exception {
 public:
   /** Constructs Error */
   explicit Error(const std::string) noexcept;
+  /** Constructs Error from a c-string */
   explicit Error(const char*) noexcept;
+  /**
+   * Constructs Error by concatenating arguments into `std::string`
+   * using `std::ostringstream`.
+   *
+   * Frequently when constructing message for thrown exception we want to
+   * build it from some blocks. A nice way to do it is by using
+   * `std::ostringstream`. Unfortunately when it is used many times it makes
+   * code repetitive and obscure. This variadic template constructor helps with
+   * this problem.
+   *
+   * It does the same thing as you would manually do, but is shorter and much
+   * more expressive. Following code snippet
+   *
+   * ```cpp
+   * throw Error{"value `", some_variable, "` is incorrect"};
+   * ```
+   *
+   * does practically the same as the latter
+   *
+   * ```cpp
+   * std::ostringstream ss;
+   * ss << "value `" << some_variable << "` is incorrect";
+   * throw Error{ss.str()};
+   * ```
+   */
   template <typename T, typename... Ts>
   explicit Error(const T, const Ts...) noexcept;
 
@@ -52,7 +78,14 @@ class CHIMP_EXPORT LogicError : public Error {
 public:
   /** Constructs LogicError */
   explicit LogicError(const std::string) noexcept;
+  /** Constructs LogicError from a c-string */
   explicit LogicError(const char*) noexcept;
+  /**
+   * Constructs LogicError by concatenating arguments into `std::string`
+   * using `std::ostringstream`.
+   *
+   * For more information see corresponding @ref Error::Error constructor.
+   */
   template <typename T, typename... Ts>
   explicit LogicError(const T, const Ts...) noexcept;
 
@@ -74,7 +107,14 @@ class CHIMP_EXPORT ParsingError : public Error {
 public:
   /** Constructs ParsingError */
   explicit ParsingError(const std::string) noexcept;
+  /** Constructs ParsingError from a c-string */
   explicit ParsingError(const char*) noexcept;
+  /**
+   * Constructs Error by concatenating arguments into `std::string`
+   * using `std::ostringstream`.
+   *
+   * For more information see corresponding @ref Error::Error constructor.
+   */
   template <typename T, typename... Ts>
   explicit ParsingError(const T, const Ts...) noexcept;
 

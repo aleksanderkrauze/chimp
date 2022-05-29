@@ -2,8 +2,6 @@
 
 ## Now
 
-- Document variadic constructors of Error classes
-
 - Add information about theme to the docs footer
 
 ## v0.1
