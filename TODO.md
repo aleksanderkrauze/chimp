@@ -3,7 +3,6 @@
 ## Now
 
 - Add information about theme to the docs footer
-- long args must be at least 2 characters long
 
 ## v0.1
 

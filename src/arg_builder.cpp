@@ -69,9 +69,10 @@ ArgBuilder& ArgBuilder::short_arg(const char arg) {
 
 /** @param arg Arg's long version */
 ArgBuilder& ArgBuilder::long_arg(const std::string arg) {
-  if (arg.length() == 0) {
+  if (arg.length() < 2) {
     std::ostringstream ss;
-    ss << "Provided empty long argument for `" << this->m_name << "` Arg";
+    ss << "Provided long argument for `" << this->m_name
+       << "` Arg is shorter than 2 characters";
 
     throw LogicError{ss.str()};
   }

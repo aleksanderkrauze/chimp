@@ -74,7 +74,7 @@ public:
    * Sets Arg's long version.
    *
    * @invariant Provided value must have following properties:
-   *   - Must be non empty
+   *   - Must be at least 2 characters long
    *   - Must contain only alphanumeric characters and `-` (hyphen)
    *   - It cannot start with a `-`
    *

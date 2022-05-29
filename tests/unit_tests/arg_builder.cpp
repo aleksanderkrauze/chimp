@@ -83,10 +83,22 @@ TEST(ArgBuilder, long_arg) {
   ASSERT_STREQ(tester.m_long(builder).value().c_str(), "name");
 }
 
-TEST(ArgBuilder, long_arg_invariant_non_empty) {
+TEST(ArgBuilder, long_arg_invariant_at_least_2_characters) {
   auto builder = chimp::ArgBuilder("arg");
 
   ASSERT_THROW(builder.long_arg(""), chimp::LogicError);
+  ASSERT_THROW(builder.long_arg("c"), chimp::LogicError);
+
+  ASSERT_NO_THROW(builder.long_arg("2c"));
+}
+
+TEST(ArgBuilder, long_arg_invariant_not_starting_with_hyphen) {
+  auto builder = chimp::ArgBuilder("arg");
+
+  ASSERT_NO_THROW(builder.long_arg("midd-le"));
+  ASSERT_NO_THROW(builder.long_arg("end-"));
+
+  ASSERT_THROW(builder.long_arg("-beginning"), chimp::LogicError);
 }
 
 TEST(ArgBuilder, long_arg_invariant_alphanumerical_and_hyphen) {
@@ -98,13 +110,4 @@ TEST(ArgBuilder, long_arg_invariant_alphanumerical_and_hyphen) {
   ASSERT_THROW(builder.long_arg("words with space"), chimp::LogicError);
   ASSERT_THROW(builder.long_arg("words_with_underscore"), chimp::LogicError);
   ASSERT_THROW(builder.long_arg("?!>"), chimp::LogicError);
-}
-
-TEST(ArgBuilder, long_arg_invariant_not_starting_with_hyphen) {
-  auto builder = chimp::ArgBuilder("arg");
-
-  ASSERT_NO_THROW(builder.long_arg("midd-le"));
-  ASSERT_NO_THROW(builder.long_arg("end-"));
-
-  ASSERT_THROW(builder.long_arg("-beginning"), chimp::LogicError);
 }
