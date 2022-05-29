@@ -21,7 +21,8 @@ class CHIMP_EXPORT Error : public std::exception {
 public:
   /** Constructs Error */
   explicit Error(const std::string) noexcept;
-  template <typename... Ts> Error(Ts...) noexcept;
+  template <typename T, typename... Ts>
+  explicit Error(const T, const Ts...) noexcept;
 
   Error(const Error&) = delete;
   explicit Error(Error&&) = default;
@@ -50,7 +51,8 @@ class CHIMP_EXPORT LogicError : public Error {
 public:
   /** Constructs LogicError */
   explicit LogicError(const std::string) noexcept;
-  template <typename... Ts> LogicError(Ts...) noexcept;
+  template <typename T, typename... Ts>
+  explicit LogicError(const T, const Ts...) noexcept;
 
   LogicError(const LogicError&) = delete;
   explicit LogicError(LogicError&&) = default;
@@ -70,7 +72,8 @@ class CHIMP_EXPORT ParsingError : public Error {
 public:
   /** Constructs ParsingError */
   explicit ParsingError(const std::string) noexcept;
-  template <typename... Ts> ParsingError(Ts...) noexcept;
+  template <typename T, typename... Ts>
+  explicit ParsingError(const T, const Ts...) noexcept;
 
   ParsingError(const ParsingError&) = delete;
   explicit ParsingError(ParsingError&&) = default;
@@ -79,33 +82,35 @@ public:
 };
 
 template <typename T>
-std::ostream& variadic_string_ostream(std::ostream& os, T val) {
+std::ostream& variadic_string_ostream(std::ostream& os, const T val) {
   return os << val;
 }
 
 template <typename T, typename... Ts>
-std::ostream& variadic_string_ostream(std::ostream& os, T head, Ts... tail) {
+std::ostream& variadic_string_ostream(std::ostream& os, const T head,
+                                      const Ts... tail) {
   os << head;
   return variadic_string_ostream(os, tail...);
 }
 
-template <typename... Ts> std::string variadic_string(Ts... vals) {
+template <typename T, typename... Ts>
+std::string variadic_string(const T head, const Ts... tail) {
   std::ostringstream ss;
-  variadic_string_ostream(ss, vals...);
+  variadic_string_ostream(ss, head, tail...);
   return ss.str();
 }
 
-template <typename... Ts>
-Error::Error(Ts... vals) noexcept
-    : Error{variadic_string(vals...)} {}
+template <typename T, typename... Ts>
+Error::Error(const T head, const Ts... tail) noexcept
+    : Error{variadic_string(head, tail...)} {}
 
-template <typename... Ts>
-LogicError::LogicError(Ts... vals) noexcept
-    : LogicError{variadic_string(vals...)} {}
+template <typename T, typename... Ts>
+LogicError::LogicError(const T head, const Ts... tail) noexcept
+    : LogicError{variadic_string(head, tail...)} {}
 
-template <typename... Ts>
-ParsingError::ParsingError(Ts... vals) noexcept
-    : ParsingError{variadic_string(vals...)} {}
+template <typename T, typename... Ts>
+ParsingError::ParsingError(const T head, const Ts... tail) noexcept
+    : ParsingError{variadic_string(head, tail...)} {}
 
 } // namespace chimp
 
