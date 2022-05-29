@@ -21,6 +21,7 @@ class CHIMP_EXPORT Error : public std::exception {
 public:
   /** Constructs Error */
   explicit Error(const std::string) noexcept;
+  explicit Error(const char*) noexcept;
   template <typename T, typename... Ts>
   explicit Error(const T, const Ts...) noexcept;
 
@@ -51,6 +52,7 @@ class CHIMP_EXPORT LogicError : public Error {
 public:
   /** Constructs LogicError */
   explicit LogicError(const std::string) noexcept;
+  explicit LogicError(const char*) noexcept;
   template <typename T, typename... Ts>
   explicit LogicError(const T, const Ts...) noexcept;
 
@@ -72,6 +74,7 @@ class CHIMP_EXPORT ParsingError : public Error {
 public:
   /** Constructs ParsingError */
   explicit ParsingError(const std::string) noexcept;
+  explicit ParsingError(const char*) noexcept;
   template <typename T, typename... Ts>
   explicit ParsingError(const T, const Ts...) noexcept;
 
