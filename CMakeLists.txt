@@ -42,8 +42,8 @@ file(GLOB CHIMP_SRC "src/*.cpp")
 add_library(chimp "${CHIMP_SRC}")
 add_library(chimp::chimp ALIAS chimp)
 
-configure_file(cmake/cmake_config.h.in include/chimp/cmake_config.h)
-generate_export_header(chimp EXPORT_FILE_NAME include/chimp/export.h)
+configure_file(cmake/config.h.in include/chimp/cmake/config.h)
+generate_export_header(chimp EXPORT_FILE_NAME include/chimp/cmake/export.h)
 
 set_target_properties(chimp PROPERTIES
 	VERSION ${chimp_VERSION}
