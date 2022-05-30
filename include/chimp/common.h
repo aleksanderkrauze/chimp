@@ -13,6 +13,8 @@ class AppBuilder;
 class Arg;
 class ArgBuilder;
 
+template <typename> class Key;
+
 class Error;
 class LogicError;
 class ParsingError;

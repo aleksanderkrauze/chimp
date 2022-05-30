@@ -14,7 +14,8 @@ Arg::Arg(ArgBuilder&& builder)
     , m_short{std::move(builder.m_short)}
     , m_long{std::move(builder.m_long)}
     , m_takes_value{std::move(builder.m_takes_value)}
-    , m_was_present{false} {}
+    , m_was_present{false}
+    , m_was_parsed{false} {}
 
 /**
  * @param name name of the argument. It is used to communicate errors to
@@ -40,12 +41,27 @@ bool Arg::is_positional() const noexcept {
   return !(this->m_short.has_value() || this->m_long.has_value());
 }
 
-void Arg::was_present(bool flag) noexcept {
+/** @param flag new value of was_present flag */
+void Arg::was_present(const bool flag, const Key<App>) noexcept {
   this->m_was_present = flag;
 }
 
-bool Arg::was_present() const noexcept {
+bool Arg::was_present() const {
+  if (!this->m_was_parsed) {
+    throw LogicError{"Called Arg::was_present on `", this->m_name,
+                     "` before it was parsed"};
+  }
+
   return this->m_was_present;
+}
+
+/** @param flag new value of was_parsed flag */
+void Arg::was_parsed(const bool flag, const Key<App>) noexcept {
+  this->m_was_parsed = flag;
+}
+
+bool Arg::was_parsed() const noexcept {
+  return this->m_was_parsed;
 }
 
 } // namespace chimp

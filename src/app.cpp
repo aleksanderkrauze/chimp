@@ -55,7 +55,7 @@ void App::parse(int argc, char const* const* argv) {
             std::begin(arguments), std::end(arguments), long_arg_matching);
 
           if (match != std::end(arguments)) {
-            match->get()->was_present(true);
+            match->get()->was_present(true, {});
           } else {
             throw ParsingError{"Unknown argument --", arg};
           }
@@ -78,7 +78,7 @@ void App::parse(int argc, char const* const* argv) {
               std::begin(arguments), std::end(arguments), short_arg_matching);
 
             if (match != std::end(arguments)) {
-              match->get()->was_present(true);
+              match->get()->was_present(true, {});
             } else {
               throw ParsingError{"Unknown argument -", c};
             }
@@ -91,6 +91,11 @@ void App::parse(int argc, char const* const* argv) {
       // ignore for now
     }
   }
+
+  // Mark all arguments as parsed
+  const auto mark_parsed = [](auto arg) { arg->was_parsed(true, {}); };
+  auto arguments = this->m_args;
+  std::for_each(std::begin(arguments), std::end(arguments), mark_parsed);
 }
 
 } // namespace chimp

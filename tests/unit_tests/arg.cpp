@@ -90,9 +90,20 @@ TEST(Arg, not_positional_takes_value) {
 TEST(Arg, was_present) {
   auto arg = Arg::builder("arg").short_arg('a').build();
 
+  // arg wasn't parsed yet, so it throws an error
+  ASSERT_THROW(arg->was_present(), chimp::LogicError);
+  // but initially it has flag was_present set to false
+  ASSERT_FALSE(tester.m_was_present(arg));
+
+  // Cheat setting was_parsed
+  tester.m_was_parsed(arg) = true;
+  // Now calling arg->was_present doesn't throw
+  ASSERT_NO_THROW(arg->was_present());
+  // And it still says that arg wasn't present
   ASSERT_FALSE(arg->was_present());
 
-  arg->was_present(true);
-
+  // Cheat setting was_present
+  tester.m_was_present(arg) = true;
+  // And now we see it indeed is present
   ASSERT_TRUE(arg->was_present());
 }

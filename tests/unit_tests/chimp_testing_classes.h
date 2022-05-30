@@ -71,8 +71,16 @@ public:
     return arg->m_takes_value;
   }
 
-  const bool m_was_present(const std::shared_ptr<Arg>& arg) const noexcept {
+  const bool& m_was_present(const std::shared_ptr<Arg>& arg) const noexcept {
     return arg->m_was_present;
+  }
+
+  bool& m_was_present(std::shared_ptr<Arg>& arg) const noexcept {
+    return arg->m_was_present;
+  }
+
+  bool& m_was_parsed(std::shared_ptr<Arg>& arg) const noexcept {
+    return arg->m_was_parsed;
   }
 };
 

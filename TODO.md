@@ -2,8 +2,10 @@
 
 ## Now
 
-- Add information about theme to the docs footer
 - Fix CI. Check why integration tests sometimes fail.
+- Split Arg into subclasses
+- Maybe add new error InfoBeforeParsed : LogicError
+- make all builders functions && ref-qualified
 
 ## v0.1
 
@@ -11,6 +13,7 @@
 - write tests
 - write documentation
 - create `CHANGELOG.md`
+- Add information about theme to the docs footer
 
 ## v0.2
 

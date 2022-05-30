@@ -6,6 +6,7 @@
 #include <string>
 
 #include "chimp/common.h"
+#include "chimp/key.h"
 
 namespace chimp {
 
@@ -71,10 +72,33 @@ public:
   /** Returns `true` when Arg is a positional argument. */
   bool is_positional() const noexcept;
 
-  /** Sets was_present flag to given value */
-  void was_present(bool) noexcept;
-  /** Returns was_present flag */
-  bool was_present() const noexcept;
+  /**
+   * Sets was_present flag to given value.
+   *
+   * This function takes a key pass guard and can only be called by App.
+   */
+  void was_present(const bool, const Key<App>) noexcept;
+  /**
+   * Returns value of was_present flag.
+   *
+   * @invariant This function can only be called after @ref App::parse
+   * was called on App containing this Arg (only after was_parsed flag
+   * was set to true). If this invariant is violated this function will
+   * throw @ref LogicError.
+   *
+   * @throws LogicError
+   */
+  bool was_present() const;
+  /**
+   * Sets was_parsed flag to given value.
+   *
+   * This function takes a key pass guard and can only be called by App.
+   */
+  void was_parsed(const bool, const Key<App>) noexcept;
+  /**
+   * Returns value of was_parsed flag.
+   */
+  bool was_parsed() const noexcept;
 
 private:
   /**
@@ -101,6 +125,12 @@ private:
 
   /** True when arg was present in parsed CLI arguments */
   bool m_was_present;
+  /**
+   * Set to true after arg calling @ref App::parse on App containing this Arg.
+   *
+   * Some functions can be called only after this event happens.
+   */
+  bool m_was_parsed;
 
   friend ArgBuilder;
 

@@ -8,5 +8,6 @@
 #include "chimp/arg.h"
 #include "chimp/arg_builder.h"
 #include "chimp/errors.h"
+#include "chimp/key.h"
 
 #endif // CHIMP_CHIMP_H
