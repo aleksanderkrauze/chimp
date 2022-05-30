@@ -93,6 +93,38 @@ public:
   explicit LogicError(LogicError&&) = default;
   LogicError& operator=(const LogicError&) = delete;
   LogicError& operator=(LogicError&&) = delete;
+
+  ~LogicError() = default;
+};
+
+/**
+ * Exception class that is associated with asking for parsed information
+ * before calling @ref App::parse.
+ *
+ * It is derived from @ref LogicError and as such it should be treated as
+ * programmers error. It is created to detail some class of logical errors.
+ */
+class CHIMP_EXPORT NotParsedYetError : public LogicError {
+public:
+  /** Constructs NotParsedYetError */
+  explicit NotParsedYetError(const std::string) noexcept;
+  /** Constructs NotParsedYetError from a c-string */
+  explicit NotParsedYetError(const char*) noexcept;
+  /**
+   * Constructs NotParsedYetError by concatenating arguments into `std::string`
+   * using `std::ostringstream`.
+   *
+   * For more information see corresponding @ref Error::Error constructor.
+   */
+  template <typename T, typename... Ts>
+  explicit NotParsedYetError(const T, const Ts...) noexcept;
+
+  NotParsedYetError(const NotParsedYetError&) = delete;
+  explicit NotParsedYetError(NotParsedYetError&&) = default;
+  NotParsedYetError& operator=(const NotParsedYetError) = delete;
+  NotParsedYetError& operator=(NotParsedYetError&&) = delete;
+
+  ~NotParsedYetError() = default;
 };
 
 /**
@@ -122,6 +154,8 @@ public:
   explicit ParsingError(ParsingError&&) = default;
   ParsingError& operator=(const ParsingError&) = delete;
   ParsingError& operator=(ParsingError&&) = delete;
+
+  ~ParsingError() = default;
 };
 
 template <typename T>
@@ -149,6 +183,10 @@ Error::Error(const T head, const Ts... tail) noexcept
 template <typename T, typename... Ts>
 LogicError::LogicError(const T head, const Ts... tail) noexcept
     : LogicError{variadic_string(head, tail...)} {}
+
+template <typename T, typename... Ts>
+NotParsedYetError::NotParsedYetError(const T head, const Ts... tail) noexcept
+    : NotParsedYetError{variadic_string(head, tail...)} {}
 
 template <typename T, typename... Ts>
 ParsingError::ParsingError(const T head, const Ts... tail) noexcept

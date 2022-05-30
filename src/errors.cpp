@@ -25,6 +25,14 @@ LogicError::LogicError(const char* msg) noexcept
     : Error{msg} {}
 
 /** @param msg error message */
+NotParsedYetError::NotParsedYetError(const std::string msg) noexcept
+    : LogicError{msg} {}
+
+/** @param msg error message */
+NotParsedYetError::NotParsedYetError(const char* msg) noexcept
+    : LogicError{msg} {}
+
+/** @param msg error message */
 ParsingError::ParsingError(const std::string msg) noexcept
     : Error{msg} {}
 

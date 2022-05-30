@@ -17,6 +17,7 @@ template <typename> class Key;
 
 class Error;
 class LogicError;
+class NotParsedYetError;
 class ParsingError;
 
 #ifdef CHIMP_BUILD_TESTING

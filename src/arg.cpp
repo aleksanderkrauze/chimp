@@ -48,8 +48,8 @@ void Arg::was_present(const bool flag, const Key<App>) noexcept {
 
 bool Arg::was_present() const {
   if (!this->m_was_parsed) {
-    throw LogicError{"Called Arg::was_present on `", this->m_name,
-                     "` before it was parsed"};
+    throw NotParsedYetError{"Called Arg::was_present on `", this->m_name,
+                            "` before it was parsed"};
   }
 
   return this->m_was_present;

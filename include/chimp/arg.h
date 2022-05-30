@@ -84,9 +84,9 @@ public:
    * @invariant This function can only be called after @ref App::parse
    * was called on App containing this Arg (only after was_parsed flag
    * was set to true). If this invariant is violated this function will
-   * throw @ref LogicError.
+   * throw @ref NotParsedYetError.
    *
-   * @throws LogicError
+   * @throws NotParsedYetError.
    */
   bool was_present() const;
   /**

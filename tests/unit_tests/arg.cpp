@@ -91,7 +91,7 @@ TEST(Arg, was_present) {
   auto arg = Arg::builder("arg").short_arg('a').build();
 
   // arg wasn't parsed yet, so it throws an error
-  ASSERT_THROW(arg->was_present(), chimp::LogicError);
+  ASSERT_THROW(arg->was_present(), chimp::NotParsedYetError);
   // but initially it has flag was_present set to false
   ASSERT_FALSE(tester.m_was_present(arg));
 
